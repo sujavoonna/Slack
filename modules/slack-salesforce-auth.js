@@ -28,9 +28,9 @@ exports.loginLink = (req, res) => {
         res.send("Invalid token");
         return;
     }
-
+    Console.log('code'+req.code+'html'+req.html);
     res.send(`Visit this URL to login to Salesforce: https://${req.hostname}/login/` + req.body.user_id);
-    Console.log(req.code+req.html);
+   
 };
 
 exports.oauthLogin = (req, res) => {
