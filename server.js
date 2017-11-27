@@ -15,7 +15,7 @@ let express = require('express'),
 	buttonAction = require('./modules/button_action'),
 	
     app = express();
-    console.log('Express server listening on port ');
+    
 
 app.enable('trust proxy');
 
