@@ -74,10 +74,11 @@ exports.execute = (req, res) => {
         })
         .catch((error) => {
             if (error.code == 401) {
-                var url =actionJSONPayload +`Visit the URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId;
-                //res.send(`Visit the URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
+               
+                var url = req.body.payload;
+                res.send(`Visit the URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
                 console.log('url'+url);
-                res.send(url);
+                //res.send(url);
             } else {
                 res.send("An error as occurred" +error.message);
             }
