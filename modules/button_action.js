@@ -80,6 +80,8 @@ exports.execute = (req, res) => {
                 let message = {
                      attachments: [
                         {color: "#F2CF5B", fields: fields,
+                        "text": "Click button to claim the case",
+                        "callback_id":"button_test",
                         "attachment_type": "default",
                         "actions": [ 
                             
@@ -88,7 +90,6 @@ exports.execute = (req, res) => {
                             "text": "Update Case Button From SF",
                             "fallback": "damn!!!!! ",
                             "color":"#3AA3E3",
-                            "callback_id":"button_test",
                             "type": "button",
                             "value": slackUserId|caseId
                            }
