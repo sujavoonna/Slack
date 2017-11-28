@@ -6,8 +6,8 @@
 exports.execute = (req, res) => {
 	//res.status(200).end() // best practice to respond with 200 status
     var actionJSONPayload = JSON.parse(req.body.payload) // parse URL-encoded payload JSON string
-	console.log('---selected name is '+ actionJSONPayload.actions[0].name);
-	console.log('---selected value is '+ actionJSONPayload.actions[0].selected_options[0].value);
+	//console.log('---selected name is '+ actionJSONPayload.actions[0].name);
+	//console.log('---selected value is '+ actionJSONPayload.actions[0].selected_options[0].value);
 	let message = {
         "text": actionJSONPayload.user.name+" clicked: "+actionJSONPayload.actions[0].value,
         "replace_original": false
