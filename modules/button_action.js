@@ -75,7 +75,7 @@ exports.execute = (req, res) => {
         .catch((error) => {
             if (error.code == 401) {
                 let fields = [];
-                //fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + caseId, short:false});
+                
                 fields.push({title: "visit the URL to login", value: `https://${req.hostname}/login/`+slackUserId});
                 let message = {
                      attachments: [
@@ -86,7 +86,9 @@ exports.execute = (req, res) => {
                            {
                             "name": "case button",
                             "text": "Update Case Button From SF",
-                            "style": "danger",
+                            "fallback": "damn!!!!! ",
+                            "color":"#3AA3E3",
+                            "callback_id":"button_test",
                             "type": "button",
                             "value": slackUserId|caseId
                            }
