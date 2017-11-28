@@ -81,11 +81,11 @@ exports.execute = (req, res) => {
                      attachments: [
                         {color: "#F2CF5B", fields: fields,
                         "attachment_type": "default",
-                        "actions": [
+                        "actions": [ 
                             
                            {
-                            "name": "change owner",
-                            "text": "Claim To Be The Case Owner",
+                            "name": "case button",
+                            "text": "Update Case Button From SF",
                             "style": "danger",
                             "type": "button",
                             "value": slackUserId|caseId
