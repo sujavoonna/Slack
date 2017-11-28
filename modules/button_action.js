@@ -74,10 +74,17 @@ exports.execute = (req, res) => {
         })
         .catch((error) => {
             if (error.code == 401) {
-                
+                let fields = [];
+                //fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + caseId, short:false});
+                fields.push({title: "visit the URL to login", value: `https://${req.hostname}/login`+slackUserId});
+                let message = {
+                     attachments: [
+                        {color: "#F2CF5B", fields: fields  }
+                    ]             
+                 } 
                // var url = req.body.payload;
-               //res.json(message);
-               res.send(`Visit the URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
+               res.json(message);
+               //res.send(`Visit the URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
                 //console.log('url'+url);
                 //res.send(url);
             } else {
