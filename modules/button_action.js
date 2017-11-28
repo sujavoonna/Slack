@@ -91,7 +91,7 @@ exports.execute = (req, res) => {
                             "fallback": "damn!!!!! ",
                             "style":"Danger",
                             "type": "button",
-                            "value": slackUserId|caseId
+                            "value": ownerId|caseId
                            }
                         ] 
                      }
