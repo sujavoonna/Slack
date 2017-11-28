@@ -76,10 +76,22 @@ exports.execute = (req, res) => {
             if (error.code == 401) {
                 let fields = [];
                 //fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + caseId, short:false});
-                fields.push({title: "visit the URL to login", value: `https://${req.hostname}/login`+slackUserId});
+                fields.push({title: "visit the URL to login", value: `https://${req.hostname}/login/`+slackUserId});
                 let message = {
                      attachments: [
-                        {color: "#F2CF5B", fields: fields  }
+                        {color: "#F2CF5B", fields: fields,
+                        "attachment_type": "default",
+                        "actions": [
+                            
+                           {
+                            "name": "change owner",
+                            "text": "Claim To Be The Case Owner",
+                            "style": "danger",
+                            "type": "button",
+                            "value": slackUserId|caseId
+                           }
+                        ] 
+                     }
                     ]             
                  } 
                // var url = req.body.payload;
