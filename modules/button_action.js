@@ -84,7 +84,8 @@ exports.execute = (req, res) => {
                     ]             
                  }
                // var url = req.body.payload;
-                res.send(`Visit the URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
+               res.json(message);
+               res.send(`Visit the URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
                 //console.log('url'+url);
                 //res.send(url);
             } else {
