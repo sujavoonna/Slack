@@ -89,7 +89,7 @@ exports.execute = (req, res) => {
                             "name": "case button",
                             "text": "Update Case Button From SF",
                             "fallback": "damn!!!!! ",
-                            "color":"#3AA3E3",
+                            "style":"Danger",
                             "type": "button",
                             "value": slackUserId|caseId
                            }
