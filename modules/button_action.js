@@ -75,8 +75,8 @@ exports.execute = (req, res) => {
         .catch((error) => {
             if (error.code == 401) {
                 let fields = [];
-                fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + caseId, short:false});
-                fields.push({title: "visit the URL to login", value: oauthObj.instance_url+"/" + slackUserId});
+                //fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + caseId, short:false});
+                fields.push({title: "visit the URL to login", value: "https//"+req.hostname+"/login/" + slackUserId});
                 let message = {
                     text: "visit the URL to login",
                     attachments: [
