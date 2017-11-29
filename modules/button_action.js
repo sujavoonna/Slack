@@ -6,9 +6,12 @@
 exports.execute = (req, res) => {
 	//res.status(200).end() // best practice to respond with 200 status
     var actionJSONPayload = JSON.parse(req.body.payload) // parse URL-encoded payload JSON string
-	//console.log('---selected name is '+ actionJSONPayload.actions[0].name);
+    var reqBody = req.body
+    var responseURL = reqBody.response_url
+    //console.log('---selected name is '+ actionJSONPayload.actions[0].name);
 	//console.log('---selected value is '+ actionJSONPayload.actions[0].selected_options[0].value);
-	let message = {
+    
+    let message = {
         "text": actionJSONPayload.user.name+" clicked: "+actionJSONPayload.actions[0].value,
         "replace_original": false
     }
@@ -140,8 +143,8 @@ exports.execute = (req, res) => {
                 ]
             };
 			console.log('----slack user is ' + slackUserId);
-            res.json(message);
-			
+            //res.json(message);
+			sendMessageToSlackResponseURL(responseURL, message)
 			 
         })
         .catch((error) => {
@@ -155,7 +158,7 @@ exports.execute = (req, res) => {
 	}
 	//*********************************************************
 };
-/*
+
 function sendMessageToSlackResponseURL(responseURL, JSONmessage){
     var postOptions = {
         uri: responseURL,
@@ -171,4 +174,3 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
         }
     })
 }
-*/
