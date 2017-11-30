@@ -102,8 +102,12 @@ exports.execute = (req, res) => {
                     ]             
                  } 
                // var url = req.body.payload;
-              // res.json(message);
-              sendMessageToSlackResponseURL(responseURL, message)
+               console.log('----before res.json(message) ');
+               console.log(res.json(message));
+               res.json(message);
+               //console.log('---message is ' + message);
+              
+              //sendMessageToSlackResponseURL(responseURL, message)
                //res.send(`Visit the URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
                 //console.log('url'+url);
                 //res.send(url);
