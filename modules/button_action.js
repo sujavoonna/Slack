@@ -84,7 +84,7 @@ exports.execute = (req, res) => {
                 let message = {
                      attachments: [
                         {color: "#F2CF5B", fields: fields,
-                        "text": "Click button to claim the case",
+                        "text": "Click the button again to  claim the case",
                         "callback_id":"button_test",
                         "attachment_type": "default",
                         "actions": [ 
@@ -102,7 +102,8 @@ exports.execute = (req, res) => {
                     ]             
                  } 
                // var url = req.body.payload;
-               res.json(message);
+              // res.json(message);
+              sendMessageToSlackResponseURL(responseURL, message)
                //res.send(`Visit the URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
                 //console.log('url'+url);
                 //res.send(url);
@@ -143,8 +144,8 @@ exports.execute = (req, res) => {
                 ]
             };
 			console.log('----slack user is ' + slackUserId);
-            //res.json(message);
-			sendMessageToSlackResponseURL(responseURL, message)
+            res.json(message);
+			//sendMessageToSlackResponseURL(responseURL, message)
 			 
         })
         .catch((error) => {
