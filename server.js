@@ -16,7 +16,7 @@ var express = require('express'),
 	buttonAction = require('./modules/button_action'),
 	
     app = express();
-    app.use(session({secret: 'ssshhhhh'}));
+    
      
 app.enable('trust proxy');
 
@@ -40,7 +40,7 @@ app.post('/login', auth.loginLink);
 app.post('/logout', auth.logout);   
 app.get('/login/:slackUserId', auth.oauthLogin);
 app.get('/oauthcallback', auth.oauthCallback);
-app.get('/session',auth.Session);
+
 console.log('Express server listening on port ');
 
 app.listen(app.get('port'), function () { 
