@@ -8,8 +8,7 @@ exports.execute = (req, res) => {
     var actionJSONPayload = JSON.parse(req.body.payload) // parse URL-encoded payload JSON string
 	console.log('---selected name is '+ actionJSONPayload.actions[0].name);
 	//console.log('---selected value is '+ actionJSONPayload.actions[0].selected_options[0].value);
-    var sess = req.session;
-        console.log('test'+sess.user);
+    
     let message = {
         "text": actionJSONPayload.user.name+" clicked: "+actionJSONPayload.actions[0].value,
         "replace_original": false
@@ -35,7 +34,7 @@ exports.execute = (req, res) => {
     if (actionName == "case button")
 	{		
     console.log('----button value is ' + actionJSONPayload.actions[0].value);
-    Console.log('session'+sess1.user) ;        
+         
 	var arr = actionJSONPayload.actions[0].value.toString().split("|");
 	console.log('----arr[0] is ' + arr[0]);
 	console.log('----arr[1] is ' + arr[1]);
