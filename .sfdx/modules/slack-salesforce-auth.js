@@ -7,6 +7,7 @@ var SLACK_LOGIN_TOKEN = process.env.SLACK_LOGIN_TOKEN,
     SF_LOGIN_URL = process.env.SF_LOGIN_URL,
     request = require('request'),
     mappings = {};
+    var sess ;
 
 exports.logout = (req,res) => {
 
@@ -40,8 +41,8 @@ exports.oauthLogin = (req, res) => {
 exports.oauthCallback = (req, res) => {
 
     var slackUserId = req.query.state;
-    var sess = req.session;
-        sess.user = 'test'; 
+    sess = req.session;
+    sess.user = 'test';
     let options = {
         url: `${SF_LOGIN_URL}/services/oauth2/token`,
         qs: {
