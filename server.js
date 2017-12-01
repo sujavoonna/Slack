@@ -1,7 +1,6 @@
 "use strict";
-
-var express = require('express'),
-    session = require('express-session');    
+    
+let express = require('express'),
     bodyParser = require('body-parser'),
     auth = require('./modules/slack-salesforce-auth'),
     contact = require('./modules/contact'),
