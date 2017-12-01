@@ -8,8 +8,8 @@ exports.execute = (req, res) => {
     var actionJSONPayload = JSON.parse(req.body.payload) // parse URL-encoded payload JSON string
 	console.log('---selected name is '+ actionJSONPayload.actions[0].name);
 	//console.log('---selected value is '+ actionJSONPayload.actions[0].selected_options[0].value);
-    //var sess = req.session;
-       // console.log(sess.user);
+    var sess = req.session;
+        console.log('test'+sess.user);
     let message = {
         "text": actionJSONPayload.user.name+" clicked: "+actionJSONPayload.actions[0].value,
         "replace_original": false
@@ -27,7 +27,7 @@ exports.execute = (req, res) => {
 		oauthObj = auth.getOAuthObject(slackUserId),
         subject = "test subject",
         description = "test description";
-        sess1 = auth.sess;
+        //sess1 = auth.sess.user;
         //caseId = "500e000000AmhVU",
 		//ownerId = "005i0000005PQjt"; // pw
 		//ownerId = "00531000006n0UJ"; //VS
