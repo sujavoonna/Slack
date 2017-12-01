@@ -76,3 +76,18 @@ exports.oauthCallback = (req, res) => {
 };
 
 exports.getOAuthObject = slackUserId => mappings[slackUserId];
+
+exports.Session = (req, res) => {
+    var sess=req.session;
+    /*
+    * Here we have assign the 'session' to 'sess'.
+    * Now we can create any number of session variable we want.
+    * in PHP we do as $_SESSION['var name'].
+    * Here we do like this.
+    */
+    sess.email; // equivalent to $_SESSION['email'] in PHP.
+    sess.username;
+    sess.slackUserId;
+    return sess;
+}
+exports.getSessionObject = sess;

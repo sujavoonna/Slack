@@ -10,7 +10,8 @@ exports.execute = (req, res) => {
     var responseURL = reqBody.response_url
     //console.log('---selected name is '+ actionJSONPayload.actions[0].name);
 	//console.log('---selected value is '+ actionJSONPayload.actions[0].selected_options[0].value);
-    
+    var session = auth.Session;
+    console.log(session.slackUserId);
     let message = {
         "text": actionJSONPayload.user.name+" clicked: "+actionJSONPayload.actions[0].value,
         "replace_original": false

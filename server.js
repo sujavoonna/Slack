@@ -1,6 +1,7 @@
 "use strict";
 
-let express = require('express'),
+var express = require('express'),
+    session = require('express-session');    
     bodyParser = require('body-parser'),
     auth = require('./modules/slack-salesforce-auth'),
     contact = require('./modules/contact'),
@@ -15,8 +16,8 @@ let express = require('express'),
 	buttonAction = require('./modules/button_action'),
 	
     app = express();
-    
-
+    app.use(session({secret: 'ssshhhhh'}));
+     
 app.enable('trust proxy');
 
 app.set('port', process.env.PORT || 5000);
@@ -39,6 +40,7 @@ app.post('/login', auth.loginLink);
 app.post('/logout', auth.logout);   
 app.get('/login/:slackUserId', auth.oauthLogin);
 app.get('/oauthcallback', auth.oauthCallback);
+app.get('/session',auth.Session);
 console.log('Express server listening on port ');
 
 app.listen(app.get('port'), function () { 
