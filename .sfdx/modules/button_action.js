@@ -6,7 +6,11 @@
 exports.execute = (req, res) => {
 	//res.status(200).end() // best practice to respond with 200 status
     var actionJSONPayload = JSON.parse(req.body.payload) // parse URL-encoded payload JSON string
-   // var reqBody = req.body
+    var sess;
+    sess = req.session;
+    console.log(sess.ownerId);
+    console.log(sess.caseId);
+    // var reqBody = req.body
     //var responseURL = reqBody.response_url
     //console.log('---selected name is '+ actionJSONPayload.actions[0].name);
 	//console.log('---selected value is '+ actionJSONPayload.actions[0].selected_options[0].value);
@@ -43,7 +47,8 @@ exports.execute = (req, res) => {
 	
 	var ownerId = arr[0];
 	var caseId = arr[1];
-	
+    sess.ownerId = ownerId;
+    sess.caseId = caseId;
     force.update(oauthObj, "Case",
         {
             id : caseId,
