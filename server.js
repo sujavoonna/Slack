@@ -1,5 +1,5 @@
 "use strict";
-    
+
 let express = require('express'),
     bodyParser = require('body-parser'),
     auth = require('./modules/slack-salesforce-auth'),
@@ -15,8 +15,8 @@ let express = require('express'),
 	buttonAction = require('./modules/button_action'),
 	
     app = express();
-    
-     
+
+
 app.enable('trust proxy');
 
 app.set('port', process.env.PORT || 5000);
@@ -33,15 +33,14 @@ app.post('/slackbutton', slackbutton.execute);
 app.post('/slackmenu', slackmenu.execute);
 app.post('/slack/actions', buttonAction.execute);
 app.post('/account', account.execute);
-app.post('/case', _case.execute); 
+app.post('/case', _case.execute);
 app.post('/whoami', whoami.execute);
 app.post('/login', auth.loginLink);
-app.post('/logout', auth.logout);   
+app.post('/logout', auth.logout);
 app.get('/login/:slackUserId', auth.oauthLogin);
 app.get('/oauthcallback', auth.oauthCallback);
 
-console.log('Express server listening on port ');
 
-app.listen(app.get('port'), function () { 
+app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
-});  
+});

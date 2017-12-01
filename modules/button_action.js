@@ -6,13 +6,9 @@
 exports.execute = (req, res) => {
 	//res.status(200).end() // best practice to respond with 200 status
     var actionJSONPayload = JSON.parse(req.body.payload) // parse URL-encoded payload JSON string
-    var reqBody = req.body
-    var responseURL = reqBody.response_url
-    //console.log('---selected name is '+ actionJSONPayload.actions[0].name);
+	console.log('---selected name is '+ actionJSONPayload.actions[0].name);
 	//console.log('---selected value is '+ actionJSONPayload.actions[0].selected_options[0].value);
-    var session = auth.Session;
-    console.log(session.slackUserId);
-    let message = {
+	let message = {
         "text": actionJSONPayload.user.name+" clicked: "+actionJSONPayload.actions[0].value,
         "replace_original": false
     }
@@ -78,40 +74,8 @@ exports.execute = (req, res) => {
         })
         .catch((error) => {
             if (error.code == 401) {
-                let fields = [];
-                fields.push({title: "UserID", value: ownerId});
-                fields.push({title: "CaseID", value:caseId});
-                fields.push({title: "visit the URL to login", value: `https://${req.hostname}/login/`+slackUserId});
-                let message = {
-                     attachments: [
-                        {color: "#F2CF5B", fields: fields,
-                        "text": "Click the button again to  claim the case",
-                        "callback_id":"button_test",
-                        "attachment_type": "default",
-                        "actions": [ 
-                            
-                           {
-                            "name": "case button",
-                            "text": "Update Case Button From SF",
-                            "fallback": "damn!!!!! ",
-                            "style":"Danger",
-                            "type": "button",
-                            "value": ownerId|caseId
-                           }
-                        ] 
-                     }
-                    ]             
-                 } 
-               // var url = req.body.payload;
-               console.log('----before res.json(message) ');
-               console.log(res.json(message));
-               res.json(message);
-               //console.log('---message is ' + message);
-              
-              //sendMessageToSlackResponseURL(responseURL, message)
-               //res.send(`Visit the URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
-                //console.log('url'+url);
-                //res.send(url);
+                res.send(`Visit this URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
+
             } else {
                 res.send("An error as occurred" +error.message);
             }
@@ -150,7 +114,7 @@ exports.execute = (req, res) => {
             };
 			console.log('----slack user is ' + slackUserId);
             res.json(message);
-			//sendMessageToSlackResponseURL(responseURL, message)
+			
 			 
         })
         .catch((error) => {
@@ -164,7 +128,7 @@ exports.execute = (req, res) => {
 	}
 	//*********************************************************
 };
-
+/*
 function sendMessageToSlackResponseURL(responseURL, JSONmessage){
     var postOptions = {
         uri: responseURL,
@@ -180,3 +144,4 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
         }
     })
 }
+*/
