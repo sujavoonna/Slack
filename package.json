@@ -10,8 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.14.2",
+    "ejs": "^1.0.0",
     "express": "^4.13.3",
-    "node-session":"1.2.1",
+    "express-session": "^1.7.6",
      "request": "^2.72.0"
   }
 }

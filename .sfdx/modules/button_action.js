@@ -6,6 +6,8 @@
 exports.execute = (req, res) => {
 	//res.status(200).end() // best practice to respond with 200 status
     var actionJSONPayload = JSON.parse(req.body.payload) // parse URL-encoded payload JSON string
+    var sess = req.session;
+   
     
     // var reqBody = req.body
     //var responseURL = reqBody.response_url
@@ -23,7 +25,7 @@ exports.execute = (req, res) => {
 	//res.json(message);
 	
 	var actionName = actionJSONPayload.actions[0].name;
-	
+   
 	//**********************************************************
 	 
 	let slackUserId = req.body.user_id,
@@ -39,7 +41,8 @@ exports.execute = (req, res) => {
     console.log('----button value is ' + actionJSONPayload.actions[0].value);
 	
 	var arr = actionJSONPayload.actions[0].value.toString().split("|");
-    
+    sess.test = arr;
+    console.log('session'+ sess.test);
     
     console.log('----arr[0] is ' + arr[0]);
 	console.log('----arr[1] is ' + arr[1]);
