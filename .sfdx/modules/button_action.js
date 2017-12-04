@@ -103,7 +103,7 @@ exports.execute = (req, res) => {
                             "style":"Danger",
                             "type": "button",
                             "value": ownerId|caseId,
-                            "url":"actions",
+                            
                         }
                         ] 
                      }
@@ -111,7 +111,7 @@ exports.execute = (req, res) => {
                  } 
                // var url = req.body.payload;
                console.log('----before res.json(message) ');
-               console.log(res.json(message));
+               //console.log(res.json(message));
                res.json(message);
                //console.log('---message is ' + message);
               
@@ -175,7 +175,7 @@ exports.execute = (req, res) => {
 function sendMessageToSlackResponseURL(responseURL, JSONmessage){
     var postOptions = {
         uri: responseURL,
-        method: 'POST',
+        method: 'get',
         headers: {
             'Content-type': 'application/json'
         },
