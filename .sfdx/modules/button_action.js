@@ -41,18 +41,13 @@ exports.execute = (req, res) => {
 	var arr = actionJSONPayload.actions[0].value.toString().split("|");
     if(arr != 0)
     {
-    req.session.arr = arr; 
-    console.log('----arr is not zero ' + req.session.arr);
+    session.startSession(req, res);
+    req.session.put('arr',arr);
     }
-    else
-    {
-        arr = req.session.arr;
-        console.log('----arr is ' + req.session.arr);
-    }
+    
     console.log('----arr[0] is ' + arr[0]);
 	console.log('----arr[1] is ' + arr[1]);
-    console.log('----arr is ' + arr);
-    
+    console.log('----arr is ' + req.session.get('arr'));
 	var ownerId = arr[0];
 	var caseId = arr[1];
     
