@@ -42,11 +42,11 @@ exports.execute = (req, res) => {
 	
 	var arr = actionJSONPayload.actions[0].value.toString().split("|");
     sess.test = arr;
-    console.log('session'+ sess.test);
+    console.log('session');
     
     console.log('----arr[0] is ' + arr[0]);
 	console.log('----arr[1] is ' + arr[1]);
-    console.log('----arr is ' );
+    console.log('----arr is ' ); 
 	var ownerId = arr[0];
 	var caseId = arr[1];
     
