@@ -41,7 +41,7 @@ exports.execute = (req, res) => {
 	var arr = actionJSONPayload.actions[0].value.toString().split("|");
     if(arr != 0)
     {
-    req.session.arr = arr;
+    req.session.arr = arr; 
     console.log('----arr is not zero ' + req.session.arr);
     }
     else
