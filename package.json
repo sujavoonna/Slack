@@ -11,7 +11,7 @@
   "dependencies": {
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
-    "node-session": "^1.2.1",
-    "request": "^2.72.0"
+    "node-session":"1.2.1",
+     "request": "^2.72.0"
   }
 }
