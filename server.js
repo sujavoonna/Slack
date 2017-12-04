@@ -23,6 +23,8 @@ app.enable('trust proxy');
 app.set('port', process.env.PORT || 5000);
 
 app.use('/', express.static(__dirname + '/www')); // serving company logos after successful authentication
+app.use(session({secret: 'Q3UBzdH9GEfiRCTKbi5MTPyChpzXLsTD'
+}));
 
 app.use(bodyParser.urlencoded({extended: false}));
 
