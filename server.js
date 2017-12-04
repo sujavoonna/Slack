@@ -26,8 +26,7 @@ app.use('/', express.static(__dirname + '/www')); // serving company logos after
 
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use(session({secret: 'Q3UBzdH9GEfiRCTKbi5MTPyChpzXLsTD'
-}));
+
 app.post('/actions', actions.handle);
 app.post('/pipeline', opportunity.execute);
 app.post('/contact', contact.execute);

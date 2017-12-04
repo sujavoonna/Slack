@@ -39,11 +39,7 @@ exports.execute = (req, res) => {
     console.log('----button value is ' + actionJSONPayload.actions[0].value);
 	
 	var arr = actionJSONPayload.actions[0].value.toString().split("|");
-    if(arr != 0)
-    {
-    session.startSession(req, res);
-    req.session.put('arr',arr);
-    }
+    
     
     console.log('----arr[0] is ' + arr[0]);
 	console.log('----arr[1] is ' + arr[1]);
