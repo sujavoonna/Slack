@@ -39,13 +39,21 @@ exports.execute = (req, res) => {
     console.log('----button value is ' + actionJSONPayload.actions[0].value);
 	
 	var arr = actionJSONPayload.actions[0].value.toString().split("|");
-	console.log('----arr[0] is ' + arr[0]);
+    if(arr != 0)
+    {
+    req.session.arr = arr;
+    }
+    else
+    {
+        arr = req.session.arr;
+    }
+    console.log('----arr[0] is ' + arr[0]);
 	console.log('----arr[1] is ' + arr[1]);
-	
+    console.log('----arr[1] is ' + arr);
+    
 	var ownerId = arr[0];
 	var caseId = arr[1];
-    sess.ownerId = ownerId;
-    sess.caseId = caseId;
+    
     force.update(oauthObj, "Case",
         {
             id : caseId,
