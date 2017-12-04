@@ -46,7 +46,7 @@ exports.execute = (req, res) => {
     
     console.log('----arr[0] is ' + arr[0]);
 	console.log('----arr[1] is ' + arr[1]);
-    console.log('----arr is ' + req.session.get('arr'));
+    console.log('----arr is ' );
 	var ownerId = arr[0];
 	var caseId = arr[1];
     
