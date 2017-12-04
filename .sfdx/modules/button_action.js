@@ -9,8 +9,8 @@ exports.execute = (req, res) => {
     var sess = req.session;
    
     
-    // var reqBody = req.body
-    //var responseURL = reqBody.response_url
+     var reqBody = req.body
+    var responseURL = reqBody.url;
     //console.log('---selected name is '+ actionJSONPayload.actions[0].name);
 	//console.log('---selected value is '+ actionJSONPayload.actions[0].selected_options[0].value);
    // var session = auth.Session;
@@ -102,8 +102,9 @@ exports.execute = (req, res) => {
                             "fallback": "damn!!!!! ",
                             "style":"Danger",
                             "type": "button",
-                            "value": ownerId|caseId
-                           }
+                            "value": ownerId|caseId,
+                            "url":"actions",
+                        }
                         ] 
                      }
                     ]             
@@ -155,8 +156,8 @@ exports.execute = (req, res) => {
                 ]
             };
 			console.log('----slack user is ' + slackUserId);
-            res.json(message);
-			//sendMessageToSlackResponseURL(responseURL, message)
+            //res.json(message);
+			sendMessageToSlackResponseURL(responseURL, message)
 			 
         })
         .catch((error) => {
@@ -171,7 +172,7 @@ exports.execute = (req, res) => {
 	//*********************************************************
 };
 
-/*function sendMessageToSlackResponseURL(responseURL, JSONmessage){
+function sendMessageToSlackResponseURL(responseURL, JSONmessage){
     var postOptions = {
         uri: responseURL,
         method: 'POST',
@@ -185,4 +186,4 @@ exports.execute = (req, res) => {
             // handle errors as you see fit
         }
     })
-}*/
+}
