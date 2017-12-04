@@ -42,10 +42,12 @@ exports.execute = (req, res) => {
     if(arr != 0)
     {
     req.session.arr = arr;
+    console.log('----arr is not zero ' + req.session.arr);
     }
     else
     {
         arr = req.session.arr;
+        console.log('----arr is ' + req.session.arr);
     }
     console.log('----arr[0] is ' + arr[0]);
 	console.log('----arr[1] is ' + arr[1]);
