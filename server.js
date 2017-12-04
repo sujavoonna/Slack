@@ -27,7 +27,7 @@ app.use('/', express.static(__dirname + '/www')); // serving company logos after
 app.use(bodyParser.urlencoded({extended: false}));
 
 
-app.post('/actions', actions.handle);
+app.post('/actions', actions.handle); 
 app.post('/pipeline', opportunity.execute);
 app.post('/contact', contact.execute);
 app.post('/searchcase', searchCase.execute);
