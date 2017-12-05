@@ -102,7 +102,7 @@ exports.execute = (req, res) => {
                             "fallback": "damn!!!!! ",
                             "style":"Danger",
                             "type": "button",
-                            "value": ownerId+'|'+caseId,
+                            "value": 'Test Button'
                             
                         }
                         ] 
