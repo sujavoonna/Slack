@@ -74,7 +74,7 @@ exports.execute = (req, res) => {
 			fields.push({title: "OwnerId", value: ownerId, short:false});
             fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + caseId, short:false});
             let message = {
-                text: "A case's owner and subject have been updated:" + new Date(),
+                text: "A case's owner and subject have been updated by :" +ownerId + new Date(),
                 attachments: [
                     {color: "#F2CF5B", fields: fields
 					 
