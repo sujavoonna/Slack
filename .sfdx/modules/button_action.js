@@ -89,6 +89,7 @@ exports.execute = (req, res) => {
                 fields.push({title: "UserID", value: ownerId});
                 fields.push({title: "CaseID", value:caseId});
                 fields.push({title: "visit the URL to login", value: `https://${req.hostname}/login/`+slackUserId});
+                fields.push({title: "visit the URL to login", value: req.url});
                 let message = {
                      attachments: [
                         {color: "#F2CF5B", fields: fields,
