@@ -3,12 +3,12 @@
  let auth = require("./slack-salesforce-auth"),
     force = require("./force");
     require = require('request');
-exports.execute = (req, res,next) => {
+exports.execute = (req, res) => {
 	//res.status(200).end() // best practice to respond with 200 status
     var actionJSONPayload = JSON.parse(req.body.payload) // parse URL-encoded payload JSON string
     
    
-    var sess = req.session;
+    
      var reqBody = req.body
     var responseURL = reqBody.url;
     //console.log('url'+responseURL);
@@ -37,27 +37,14 @@ exports.execute = (req, res,next) => {
 		//ownerId = "005i0000005PQjt"; // pw
 		//ownerId = "00531000006n0UJ"; //VS
 		
-    if (actionName == "case button")
-	{	
-        if (sess.views) {
-            sess.views++
-           
-        }
-        else	
-        {
-            sess.views = 1
-            
-        }
-        console.log('views'+sess.Views);
+    
     console.log('----button value is ' + actionJSONPayload.actions[0].value);
 	
 	var arr = actionJSONPayload.actions[0].value.toString().split("|");
-    //sess.test = arr;
-    //console.log('session');
-    
+    console.log('testing');
     console.log('----arr[0] is ' + arr[0]);
 	console.log('----arr[1] is ' + arr[1]);
-    console.log('----arr is ' ); 
+    
 	var ownerId = arr[0];
 	var caseId = arr[1];
     
