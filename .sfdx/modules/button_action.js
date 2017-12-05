@@ -6,11 +6,11 @@
 exports.execute = (req, res) => {
 	//res.status(200).end() // best practice to respond with 200 status
     var actionJSONPayload = JSON.parse(req.body.payload) // parse URL-encoded payload JSON string
-    var sess = req.session;
+    //var sess = req.session;
    
     
-     var reqBody = req.body
-    var responseURL = reqBody.url;
+     //var reqBody = req.body
+    //var responseURL = reqBody.url;
     //console.log('---selected name is '+ actionJSONPayload.actions[0].name);
 	//console.log('---selected value is '+ actionJSONPayload.actions[0].selected_options[0].value);
    // var session = auth.Session;
