@@ -119,7 +119,7 @@ exports.execute = (req, res) => {
                 json: true,   // <--Very important!!!
                 body: message
             }, function (error, response, body){
-                console.log(response);
+                console.log('response'+response);
             });
                res.json(message);
                //console.log('---message is ' + message);
