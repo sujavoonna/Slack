@@ -1,7 +1,6 @@
 "use strict";
 
 let express = require('express'),
-    session = require('express-session'),
     bodyParser = require('body-parser'),
     auth = require('./modules/slack-salesforce-auth'),
     contact = require('./modules/contact'),
@@ -23,12 +22,7 @@ app.enable('trust proxy');
 app.set('port', process.env.PORT || 5000);
 
 app.use('/', express.static(__dirname + '/www')); // serving company logos after successful authentication
-app.use(session({secret: 'ssshhhhh',
-resave: false,
-saveUninitialized: true,
-cookie: { secure: true }
 
-}));
 
 app.use(bodyParser.urlencoded({extended: false}));
 
