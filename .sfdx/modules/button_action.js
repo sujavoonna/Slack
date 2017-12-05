@@ -3,12 +3,12 @@
  let auth = require("./slack-salesforce-auth"),
     force = require("./force");
     require = require('request');
-exports.execute = (req, res) => {
+exports.execute = (req, res,next) => {
 	//res.status(200).end() // best practice to respond with 200 status
     var actionJSONPayload = JSON.parse(req.body.payload) // parse URL-encoded payload JSON string
     
    
-    
+    var sess = req.session;
      var reqBody = req.body
     var responseURL = reqBody.url;
     //console.log('url'+responseURL);
@@ -37,14 +37,18 @@ exports.execute = (req, res) => {
 		//ownerId = "005i0000005PQjt"; // pw
 		//ownerId = "00531000006n0UJ"; //VS
 		
-    
+    if (actionName == "case button")
+	{	
+        
     console.log('----button value is ' + actionJSONPayload.actions[0].value);
 	
 	var arr = actionJSONPayload.actions[0].value.toString().split("|");
-    console.log('testing');
+    //sess.test = arr;
+    //console.log('session');
+    
     console.log('----arr[0] is ' + arr[0]);
 	console.log('----arr[1] is ' + arr[1]);
-    
+     
 	var ownerId = arr[0];
 	var caseId = arr[1];
     
@@ -96,7 +100,7 @@ exports.execute = (req, res) => {
                         "actions": [ 
                             
                            {
-                            "name": "case button",
+                            "name": "case update after authencation",
                             "text": "Update Case Button From SF", 
                             "fallback": "damn!!!!! ",
                             "style":"Danger",
@@ -169,7 +173,57 @@ exports.execute = (req, res) => {
             }
 	});
 	}
-	//*********************************************************
+    //*********************************************************
+    
+    if (actionName == "case update after authencation")
+	{		
+    
+	var arr =  actionJSONPayload.actions[0].value.toString().split("|");
+	console.log('----arr[0] is ' + arr[0]);
+	console.log('----arr[1] is ' + arr[1]);
+	
+	var ownerId = '500e000000BAD37';//arr[0];
+	var caseId = '00531000006QyTXAA0';//arr[1];
+    
+	
+    force.update(oauthObj, "Case",
+        {
+            id : caseId,
+			subject: "update test -- " + new Date(),
+			Slack_Assign_To__c: ownerId,
+			ownerId: ownerId,
+			Other_Data_Sources__c : "slack"
+			 
+            
+        })
+        .then(data => {
+            let fields = [];
+            fields.push({title: "Subject", value: subject, short:false});
+			fields.push({title: "OwnerId", value: ownerId, short:false});
+            fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + caseId, short:false});
+            let message = {
+                text: "A case's owner and subject have been updated:" + new Date(),
+                attachments: [
+                    {color: "#F2CF5B", fields: fields
+					 
+			
+					}
+                ]
+            };
+			console.log('----slack user is ' + slackUserId);
+            //res.json(message);
+			sendMessageToSlackResponseURL(responseURL, message)
+			 
+        })
+        .catch((error) => {
+            if (error.code == 401) {
+                res.send(`Visit this URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
+
+            } else {
+                res.send("An error as occurred" +error.message);
+            }
+	});
+	}
 };
 
 function sendMessageToSlackResponseURL(responseURL, JSONmessage){
