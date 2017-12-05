@@ -58,7 +58,8 @@ exports.execute = (req, res,next) => {
         var ownerId = "500e000000BAD37";//arr[0];
         var caseId = "00531000006QyTXAA0";//arr[1];
     }
-    
+        var caseId = "00531000006QyTXAA0";//arr[1];
+    Console.log(ownerId+caseId+ID);
     force.update(oauthObj, "Case",
         {
             id : caseId,
@@ -108,7 +109,7 @@ exports.execute = (req, res,next) => {
                             
                            {
                             "name": "case update after authencation",
-                            "text": "Update Case Button ", 
+                            "text": "Update Case  ", 
                             "fallback": "damn!!!!! ",
                             "style":"Danger",
                             "type": "button",
