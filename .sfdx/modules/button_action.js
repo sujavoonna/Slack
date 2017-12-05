@@ -41,8 +41,8 @@ exports.execute = (req, res) => {
     console.log('----button value is ' + actionJSONPayload.actions[0].value);
 	
 	var arr = actionJSONPayload.actions[0].value.toString().split("|");
-    sess.test = arr;
-    console.log('session');
+    //sess.test = arr;
+    //console.log('session');
     
     console.log('----arr[0] is ' + arr[0]);
 	console.log('----arr[1] is ' + arr[1]);
@@ -102,7 +102,7 @@ exports.execute = (req, res) => {
                             "fallback": "damn!!!!! ",
                             "style":"Danger",
                             "type": "button",
-                            "value": ownerId|caseId,
+                            "value": ownerId+'|'+caseId,
                             
                         }
                         ] 
