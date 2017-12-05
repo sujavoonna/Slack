@@ -86,7 +86,28 @@ exports.execute = (req, res) => {
                 fields.push({title: "UserID", value: ownerId});
                 fields.push({title: "CaseID", value:caseId});
                 fields.push({title: "visit the URL to login", value: `https://${req.hostname}/login/`+slackUserId});
-                
+                fields.push({title: "visit the case", value: 'Test'});
+                let message = {
+                     attachments: [
+                        {color: "#F2CF5B", fields: fields,
+                        "text": "Click the button again to  claim the case",
+                        "callback_id":"button_test",
+                        "attachment_type": "default",
+                        "actions": [ 
+                            
+                           {
+                            "name": "case button",
+                            "text": "Update Case Button From SF", 
+                            "fallback": "damn!!!!! ",
+                            "style":"Danger",
+                            "type": "button",
+                            "value": "Test Button"
+                            
+                        }
+                        ] 
+                     }
+                    ]             
+                 } 
                // var url = req.body.payload;
                console.log('----before res.json(message) ');
                //console.log(res.json(message));
@@ -99,7 +120,7 @@ exports.execute = (req, res) => {
                 //console.log('url'+url);
                 //res.send(url);
             } else {
-                res.send("An error as occurred" +error.message); 
+                res.send("An error as occurred" +error.message);
             }
 	});
 	}
