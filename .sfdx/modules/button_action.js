@@ -101,7 +101,7 @@ exports.execute = (req, res,next) => {
                             
                            {
                             "name": "case update after authencation",
-                            "text": "Update Case Button From SF", 
+                            "text": "Update Case Button ", 
                             "fallback": "damn!!!!! ",
                             "style":"Danger",
                             "type": "button",
