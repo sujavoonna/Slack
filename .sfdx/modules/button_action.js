@@ -2,13 +2,11 @@
 
  let auth = require("./slack-salesforce-auth"),
     force = require("./force");
-    require = require('request');
-exports.execute = (req, res,next) => {
+    
+exports.execute = (req, res) => {
 	//res.status(200).end() // best practice to respond with 200 status
     var actionJSONPayload = JSON.parse(req.body.payload) // parse URL-encoded payload JSON string
-    
-   
-    var sess = req.session;
+        
      var reqBody = req.body
     var responseURL = reqBody.url;
     //console.log('url'+responseURL);
@@ -95,8 +93,8 @@ exports.execute = (req, res,next) => {
         .catch((error) => {
             if (error.code == 401) {
                 let fields = [];
-                fields.push({title: "UserID", value: ownerId});
-                fields.push({title: "CaseID", value:caseId});
+                fields.push({title: "UserID", value: ownerId+'test'});
+                fields.push({title: "CaseID", value:caseId+'test'});
                 fields.push({title: "visit the URL to login", value: `https://${req.hostname}/login/`+slackUserId});
                 fields.push({title: "visit the case", value: 'Test'});
                 let message = {
