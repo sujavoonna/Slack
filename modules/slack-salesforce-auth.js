@@ -35,15 +35,14 @@ exports.loginLink = (req, res) => {
 };
 
 exports.oauthLogin = (req, res) => {
-    console.login('oauthlogin');
+    
     res.redirect(`${SF_LOGIN_URL}/services/oauth2/authorize?response_type=code&client_id=${SF_CLIENT_ID}&redirect_uri=https://${req.hostname}/oauthcallback&state=${req.params.slackUserId}`);
 };
 
 exports.oauthCallback = (req, res) => {
 
     var slackUserId = req.query.state;
-    console.login('oauthcallback');
-    let options = {
+     let options = {
         url: `${SF_LOGIN_URL}/services/oauth2/token`,
         qs: {
             grant_type: "authorization_code",
@@ -59,7 +58,7 @@ exports.oauthCallback = (req, res) => {
             console.log(error);
             return res.send("error");
         }
-        console.login('oauthloginpost');
+       
         mappings[slackUserId] = JSON.parse(body);
         let html = `
             <html>
