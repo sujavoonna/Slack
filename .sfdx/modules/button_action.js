@@ -11,7 +11,7 @@ exports.execute = (req, res) => {
     
      var reqBody = req.body
     var responseURL = reqBody.url;
-    console.log('url'+responseURL);
+    //console.log('url'+responseURL);
     //console.log('---selected name is '+ actionJSONPayload.actions[0].name);
 	//console.log('---selected value is '+ actionJSONPayload.actions[0].selected_options[0].value);
    // var session = auth.Session;
@@ -113,14 +113,7 @@ exports.execute = (req, res) => {
                // var url = req.body.payload;
                console.log('----before res.json(message) ');
                //console.log(res.json(message));
-               request({
-                url: "/actions",
-                method: "POST",
-                json: true,   // <--Very important!!!
-                body: message
-            }, function (error, response, body){
-                console.log('response'+response);
-            });
+               
                res.json(message);
                //console.log('---message is ' + message);
               
