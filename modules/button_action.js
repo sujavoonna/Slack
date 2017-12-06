@@ -17,7 +17,7 @@ exports.execute = (req, res) => {
 	
     console.log('---message is ' + message);
 	//res.json(message);
-	
+	console.log('token'+req.body.token);
 	var actionName = actionJSONPayload.actions[0].name;
 	
 	//**********************************************************
