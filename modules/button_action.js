@@ -78,7 +78,7 @@ exports.execute = (req, res) => {
         .catch((error) => {
             if (error.code == 401) {
                 let fields = [];
-                fields.push({title: "UserID", value: ownerId});
+                fields.push({title: "UserID", value: ownerId+"Test"});
                 fields.push({title: "CaseID", value:caseId});
                 fields.push({title: "visit the URL to login", value: `https://${req.hostname}/login/`+slackUserId});
                 let message = {
