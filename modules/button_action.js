@@ -39,18 +39,19 @@ exports.execute = (req, res) => {
 	console.log('----arr[0] is ' + arr[0]);
 	console.log('----arr[1] is ' + arr[1]);
     sess = req.session;
-    sess.arr = 'test';
-    console.log('session'+sess.arr);
-
+   
 	//var ownerId = arr[0];
    // var caseId = arr[1];
     if(arr == 0)
-    {
+    {   arr = sess.arr;
+        console.log('sessarr0'+arr[0]);
+        console.log('sessarr0'+arr[1]);
         var ownerId = "00531000006QyTXAA0";
         var caseId = "500e000000BAD37";
     }
     else
     {
+        sess.arr = arr;
         var ownerId = arr[0];
         var caseId = arr[1];
 
@@ -108,7 +109,7 @@ exports.execute = (req, res) => {
                             "fallback": "damn!!!!! ",
                             "style":"Danger",
                             "type": "button",
-                            "value": ownerId|caseId
+                            "value": ownerId+'|'+caseId
                            }
                         ] 
                      }
