@@ -39,9 +39,18 @@ exports.execute = (req, res) => {
 	console.log('----arr[0] is ' + arr[0]);
 	console.log('----arr[1] is ' + arr[1]);
 	
-	var ownerId = arr[0];
-    var caseId = arr[1];
-    //sess.user = ownerId; 
+	//var ownerId = arr[0];
+   // var caseId = arr[1];
+    if(arr == 0)
+    {
+        var ownerId = "00531000006QyTXAA0";
+        var caseId = "500e000000BAD37";
+    }
+    else
+    {
+        var ownerId = arr[0];
+        var caseId = arr[1];
+    }
 	 
     force.update(oauthObj, "Case",
         {
