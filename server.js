@@ -11,7 +11,7 @@ let express = require('express'),
     whoami = require('./modules/whoami'),
     actions = require('./modules/actions'),
 	searchCase = require('./modules/search_case'),
-	slackbutton = require('./modules/slack_button'),
+	sujaslackbutton = require('./modules/slack_button'),
 	slackmenu = require('./modules/slack_menu'),
 	buttonAction = require('./modules/button_action'),
 	
@@ -32,7 +32,7 @@ app.post('/actions', actions.handle);
 app.post('/pipeline', opportunity.execute);
 app.post('/contact', contact.execute);
 app.post('/searchcase', searchCase.execute);
-app.post('/slackbutton', slackbutton.execute);
+app.post('/sujaslackbutton', sujaslackbutton.execute);
 app.post('/slackmenu', slackmenu.execute);
 app.post('/slack/actions', buttonAction.execute);
 app.post('/account', account.execute);
