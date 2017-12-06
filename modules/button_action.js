@@ -2,7 +2,7 @@
 
  let auth = require("./slack-salesforce-auth"),
     force = require("./force");
-
+     var sess;
 exports.execute = (req, res) => {
 	//res.status(200).end() // best practice to respond with 200 status
     var actionJSONPayload = JSON.parse(req.body.payload) // parse URL-encoded payload JSON string
@@ -38,7 +38,9 @@ exports.execute = (req, res) => {
 	var arr = actionJSONPayload.actions[0].value.toString().split("|");
 	console.log('----arr[0] is ' + arr[0]);
 	console.log('----arr[1] is ' + arr[1]);
-	
+    sess = req.session;
+    sess.arr = 'test'
+    console.log('session'+sess.arr);
 	//var ownerId = arr[0];
    // var caseId = arr[1];
     if(arr == 0)
@@ -50,6 +52,7 @@ exports.execute = (req, res) => {
     {
         var ownerId = arr[0];
         var caseId = arr[1];
+
     }
 	 
     force.update(oauthObj, "Case",
