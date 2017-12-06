@@ -37,7 +37,7 @@ exports.execute = (req, res) => {
          
 	var arr = actionJSONPayload.actions[0].value.toString().split("|");
 	console.log('----arr[0] is ' + arr[0]);
-	console.log('----arr[1] is ' + arr[1]);
+	console.log('----arr[1] is ' + arr[1]);  
    
    
 	var ownerId = arr[0];
