@@ -15,7 +15,7 @@ exports.execute = (req, res) => {
     }
 	console.log('----in button_action, before res.json(message) ');
 	
-    console.log('---message is ' + actionJSONPayload.user.name);
+    console.log('---message is ' + actionJSONPayload.user.name+actionJSONPayload.Id);
 	//res.json(message);
 	console.log('token'+req.body.token);
 	var actionName = actionJSONPayload.actions[0].name;
