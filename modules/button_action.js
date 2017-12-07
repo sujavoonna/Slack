@@ -24,7 +24,7 @@ exports.execute = (req, res) => {
     var soql = 'Select id from User where Slack_Name__c = @'+slackUserName;
     var oauthObj = auth.getOAuthObject(slackUserId);
     console.log('soql'+soql);
-    force.query(oauthObj, q)
+    force.query(oauthObj, soql)
     .then(data => {
         let user = JSON.parse(data).records;
         if (user.length>0) {
