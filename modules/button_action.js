@@ -21,7 +21,7 @@ exports.execute = (req, res) => {
 	var actionName = actionJSONPayload.actions[0].name;
     var slackUserName = actionJSONPayload.user.name;
     var slackUserId = actionJSONPayload.user.id;
-    var soql = 'Select id from User where Slack_Name__c = @'+slackUserName;
+    var soql = "Select id from User where Slack_Name__c = @'"+slackUserName+"'";
     var oauthObj = auth.getOAuthObject(slackUserId);
     console.log('soql'+soql);
     force.query(oauthObj, soql)
@@ -29,6 +29,10 @@ exports.execute = (req, res) => {
         let user = JSON.parse(data).records;
         if (user.length>0) {
             console.log('id'+user.id);
+        }
+        else
+        {
+            console.log('no data');
         }
     
     
