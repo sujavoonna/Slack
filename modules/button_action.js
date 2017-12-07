@@ -20,6 +20,7 @@ exports.execute = (req, res) => {
 	console.log('token'+req.body.token);
 	var actionName = actionJSONPayload.actions[0].name;
     var slackUserName = actionJSONPayload.user.name;
+    var slackUserId = actionJSONPayload.user.id;
     var soql = 'Select id from User where Slack_Name__c = @'+slackUserName;
     var oauthObj = auth.getOAuthObject(slackUserId);
     console.log('soql'+soql);
