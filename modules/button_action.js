@@ -20,7 +20,8 @@ exports.execute = (req, res) => {
 	console.log('token'+req.body.token);
 	var actionName = actionJSONPayload.actions[0].name;
     var slackUserName = actionJSONPayload.user.name;
-    var soql = 'Select id from User where Slack_Name__c =@'+slackUserName;
+    var soql = 'Select id from User where Slack_Name__c = @'+slackUserName;
+    var oauthObj = auth.getOAuthObject(slackUserId),
     console.log('soql'+soql);
     force.query(oauthObj, q)
     .then(data => {
@@ -34,7 +35,7 @@ exports.execute = (req, res) => {
 	//**********************************************************
 	 
 	let slackUserId = req.body.user_id,
-		oauthObj = auth.getOAuthObject(slackUserId),
+		//oauthObj = auth.getOAuthObject(slackUserId),
         subject = "test subject",
         description = "test description";
         //sess1 = auth.sess.user;
