@@ -35,7 +35,7 @@ exports.execute = (req, res) => {
     });
 	//**********************************************************
 	 
-	let slackUserId = req.body.user_id,
+	let //slackUserId = req.body.user_id,
 		//oauthObj = auth.getOAuthObject(slackUserId),
         subject = "test subject",
         description = "test description";
