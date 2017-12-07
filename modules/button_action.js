@@ -19,7 +19,18 @@ exports.execute = (req, res) => {
 	//res.json(message);
 	console.log('token'+req.body.token);
 	var actionName = actionJSONPayload.actions[0].name;
-	
+    slackUserName = actionJSONPayload.user.name;
+    soql = 'Select id from User where Slack_Name__c =@'+slackUserName;
+    console.log('soql'+soql);
+    force.query(oauthObj, q)
+    .then(data => {
+        let user = JSON.parse(data).records;
+        if (user.length>0) {
+            console.log('id'+user.id);
+        }
+    
+    
+    });
 	//**********************************************************
 	 
 	let slackUserId = req.body.user_id,
@@ -103,7 +114,7 @@ exports.execute = (req, res) => {
                  } 
                // var url = req.body.payload;
                console.log('----before res.json(message) ');
-               //console.log(res.json(message));
+               console.log(res.json(message));
                res.json(message);
 
             } else {
