@@ -103,7 +103,7 @@ exports.execute = (req, res) => {
                  } 
                // var url = req.body.payload;
                console.log('----before res.json(message) ');
-               console.log(res.json(message));
+               //console.log(res.json(message));
                res.json(message);
 
             } else {
