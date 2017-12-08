@@ -25,44 +25,10 @@ exports.execute = (req, res) => {
     //var soql = "Select id from User ";//where Slack_Name__c = '@"+slackUserName+"'";
     var oauthObj = auth.getOAuthObject(slackUserId);
    console.log('before');
-    var fuserId ;
-    var userId;
-    function getUserId(oauthObj, soql,callback) 
-    {   
-            
-            force.query(oauthObj, soql,function(err,data){
-
-                if (err) {
-                    callback("Error communicating ...",null);
-                } else if (data) {
-                    callback("Error comparing authentication...");
-                    let users = JSON.parse(data).records;
-                    if (users && users.length>0)
-                    {
-                        //userId = users[0].Id
-                        console.log('useridfunction'+userId);
-                    }
-                    callback(null,users[0].Id);
-                }
-           /* .then(data => { 
-                let users = JSON.parse(data).records;
-                if (users && users.length>0)
-                {
-                    userId = users[0].Id
-                    console.log('useridfunction'+userId);
-                }*/
-            });
-           // return userId;
-           //callback(userId);
-        
-    };
-    
-    getUserId(oauthObj, soql,function(err,content){
-        if (err) {
-            console.log(err);
-        } else {
-            userId = content;
-        }
+    var userId ;
+    getUserId(oauthObj, soql,function(userid){
+        userId = userid;
+        console.log(userid);
     });
     console.log('useridretunr'+userId);
        
@@ -222,3 +188,20 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
     })
 }
 */
+function getUserId(oauthObj, soql,callback) 
+{   
+        
+        force.query(oauthObj, soql)
+        .then(data => { 
+            let users = JSON.parse(data).records;
+            if (users && users.length>0)
+            {
+                userId = users[0].Id
+                console.log('useridfunction'+userId);
+            }
+
+            return callback(userId);
+        });
+        
+    
+}
