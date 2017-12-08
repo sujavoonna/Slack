@@ -17,7 +17,7 @@ exports.execute = (req, res) => {
 	
     console.log('---message is name' + actionJSONPayload.user.name+'id'+actionJSONPayload.user.id);
 	//res.json(message);
-	console.log('token'+req.body.token);
+	//console.log('token'+req.body.token);
 	var actionName = actionJSONPayload.actions[0].name;
     var slackUserName = actionJSONPayload.user.name;
     var slackUserId = actionJSONPayload.user.id;
@@ -190,8 +190,8 @@ function getUserId(oauthObj,soql)
     {
         data = force.query(oauthObj, soql);
         console.log('data'+data);
-        let users = JSON.parse(data).records;
-        console.log('lenght'+users.length);
+        //let users = JSON.parse(data).records;
+        console.log('lenght'+data['id']);
     }catch(ex){
         console.log(ex.message);
     }
