@@ -47,7 +47,7 @@ exports.execute = (req, res) => {
 		//ownerId = "005i0000005PQjt"; // pw
 		//ownerId = "00531000006n0UJ"; //VS
        
-        console.log('userid1'+userid);
+        //console.log('userid1'+userid);
     if (actionName == "case button")
 	{		
     console.log('----button value is ' + actionJSONPayload.actions[0].value);
