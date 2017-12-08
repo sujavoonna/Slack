@@ -192,7 +192,7 @@ function getUserId(oauthObj,soql)
         let users = JSON.parse(data).records;
         console.log('lenght'+users.length);
     }catch(ex){
-        console.log('errors');
+        console.log(ex.message);
     }
     
 
