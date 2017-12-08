@@ -203,7 +203,7 @@ function getUserId(oauthObj, soql)
         if (users && users.length>0)
         {
             userId = users[0].Id
-        
+            onsole.log('userid'+userId);
         }
     });
     return userId;
