@@ -38,7 +38,7 @@ exports.execute = (req, res) => {
         
         });
       */ 
-      getUserId  
+       
 	//**********************************************************
 	 
 	let //slackUserId = req.body.user_id,
