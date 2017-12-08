@@ -1,5 +1,3 @@
-import { error } from "util";
-
 "use strict";
 
  let auth = require("./slack-salesforce-auth"),
