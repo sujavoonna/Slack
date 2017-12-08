@@ -24,19 +24,21 @@ exports.execute = (req, res) => {
     var soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'";
     var oauthObj = auth.getOAuthObject(slackUserId);
     console.log('soql'+soql);
-    force.query(oauthObj, soql)
-    .then(data => {
-        let user = JSON.parse(data).records;
-        if (user.length>0) {
-            console.log('id'+user.id);
-        }
-        else
-        {
-            console.log('no data');
-        }
-    
-    
-    });
+    /*force.query(oauthObj, soql)
+        .then(data => {
+            let user = JSON.parse(data).records;
+            if (user.length>0) {
+                console.log('id'+user.id);
+            }
+            else
+            {
+                console.log('no data');
+            }
+        
+        
+        });
+      */ 
+      getUserId  
 	//**********************************************************
 	 
 	let //slackUserId = req.body.user_id,
@@ -47,7 +49,8 @@ exports.execute = (req, res) => {
         //caseId = "500e000000AmhVU",
 		//ownerId = "005i0000005PQjt"; // pw
 		//ownerId = "00531000006n0UJ"; //VS
-		
+        userid = getUserId(slackUserName,soql) ;
+        console.log('userid1'+userid);
     if (actionName == "case button")
 	{		
     console.log('----button value is ' + actionJSONPayload.actions[0].value);
@@ -192,3 +195,9 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
     })
 }
 */
+function getUserId(slackUserName,soql) 
+{
+    console.log('test');
+    let id = 'test123';
+    return id;
+}
