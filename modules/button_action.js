@@ -1,3 +1,5 @@
+import { error } from "util";
+
 "use strict";
 
  let auth = require("./slack-salesforce-auth"),
@@ -187,22 +189,15 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
 function getUserId(oauthObj,soql) 
 {
     force.query(oauthObj, soql)
-    .then(data => {
-        let user = JSON.parse(data).records;
-        if (user.length>0) {
-            console.log('test'+JSON.parse(data).records);
-            return user;
-            
-        }
-        else
-        {
-            console.log('no data');
-            let test = 'no data';
-            return test;
-        }
-    
-    
-    });
+    if(error)
+    {
+        console.log('error');
+     }
+     else
+     {
+         console.log('no error')
+     }
+
     console.log('test');
    
 
