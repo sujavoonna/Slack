@@ -32,7 +32,8 @@ exports.execute = (req, res) => {
         let users = JSON.parse(data).records;
         if (users && users.length>0)
         {
-            res.send("users" +JSON.stringify(users));
+            user = users.Id;
+            res.send("users" +JSON.stringify(users)+user);
         }
     });
     
