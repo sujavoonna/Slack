@@ -197,11 +197,13 @@ function getUserId(oauthObj,soql)
         else
         {
             console.log('no data');
+            let test = 'no data';
+            return test;
         }
     
     
     });
     console.log('test');
    
-    return id;
+
 }
