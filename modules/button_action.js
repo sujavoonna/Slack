@@ -25,7 +25,7 @@ exports.execute = (req, res) => {
     //var soql = "Select id from User ";//where Slack_Name__c = '@"+slackUserName+"'";
     var oauthObj = auth.getOAuthObject(slackUserId);
    console.log('before');
-    var userid ;
+    var userId ;
     function getUserId(oauthObj, soql,callback) 
     {   
             
@@ -43,7 +43,7 @@ exports.execute = (req, res) => {
     }
     
     getUserId(oauthObj, soql);
-    console.log('useridretunr'+userid);
+    console.log('useridretunr'+userId);
        
 	//**********************************************************
 	 
