@@ -33,8 +33,8 @@ exports.execute = (req, res) => {
         if (users && users.length>0)
         {
             users.forEach(function(user) {
-                if (user.id){
-                        userid = user.id;
+                if (user.Id){
+                        userid = user.Id;
                         res.send('userid'+userid+users[0].Id);
                 }
 
