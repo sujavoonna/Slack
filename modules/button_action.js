@@ -187,18 +187,19 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
 }
 */
 function getUserId(oauthObj,soql) 
-{
-    force.query(oauthObj, soql)
-    if(error)
+{  var data = "test";
+    try
     {
-        console.log('error');
-     }
-     else
-     {
-         console.log('no error')
-     }
+        data = force.query(oauthObj, soql);
+        let users = JSON.parse(data).records;
+        console.log('lenght'+users.length);
+    }catch(ex){
+        console.log('errors');
+    }
+    
 
-    console.log('test');
+    console.log('data'+data);
+    return data;
    
 
 }
