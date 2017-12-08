@@ -26,8 +26,15 @@ exports.execute = (req, res) => {
     var oauthObj = auth.getOAuthObject(slackUserId);
     //console.log('soql'+soql);
     var userid = getUserId(oauthObj,soql) ;
+    force.query(oauthObj, soql)
+    .then(data => { 
+        let users = JSON.parse(data).records;
+        if (users && users.length>0)
+        {
+            res.send("users" +users.length)
+        }
+    });
     
- 
        
 	//**********************************************************
 	 
