@@ -187,8 +187,8 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
 function getUserId(oauthObj, soql) 
 {   return co(function *(){
         var userId = "";
-        yield force.query(oauthObj, soql)
-        .then(data => { 
+        var response = yield force.query(oauthObj, soql);
+        resonse.then(data => { 
             let users = JSON.parse(data).records;
             if (users && users.length>0)
             {
