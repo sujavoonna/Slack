@@ -112,7 +112,7 @@ exports.execute = (req, res) => {
                  } 
                // var url = req.body.payload;
                console.log('----before res.json(message) ');
-               console.log(res.json(message));
+              // console.log(res.json(message));
                res.json(message);
 
             } else {
@@ -190,8 +190,8 @@ function getUserId(oauthObj,soql)
     .then(data => {
         let user = JSON.parse(data).records;
         if (user.length>0) {
-            console.log('useridtest'+user[0].id);
-            return user[0].id;
+            console.log('test'+JSON.parse(data).records);
+            return user;
             
         }
         else
