@@ -30,23 +30,40 @@ exports.execute = (req, res) => {
     function getUserId(oauthObj, soql,callback) 
     {   
             
-            force.query(oauthObj, soql)
-            .then(data => { 
+            force.query(oauthObj, soql,function(err,data){
+
+                if (err) {
+                    callback("Error communicating ...");
+                } else if (data) {
+                    callback("Error comparing authentication...");
+                    let users = JSON.parse(data).records;
+                    if (users && users.length>0)
+                    {
+                        userId = users[0].Id
+                        console.log('useridfunction'+userId);
+                    }
+                    callback();
+                }
+           /* .then(data => { 
                 let users = JSON.parse(data).records;
                 if (users && users.length>0)
                 {
                     userId = users[0].Id
                     console.log('useridfunction'+userId);
-                }
+                }*/
             });
            // return userId;
-           callback(userId);
+           //callback(userId);
         
-    }
-    function mycontent() {
-        console.log(fuserId);
-      }
-    getUserId(oauthObj, soql);
+    };
+    
+    getUserId(oauthObj, soql,function(err){
+        if (err) {
+            alert(err);
+        } else {
+            alert('Welcome');
+        }
+    });
     console.log('useridretunr'+userId);
        
 	//**********************************************************
