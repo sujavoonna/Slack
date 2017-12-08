@@ -33,16 +33,16 @@ exports.execute = (req, res) => {
             force.query(oauthObj, soql,function(err,data){
 
                 if (err) {
-                    callback("Error communicating ...");
+                    callback("Error communicating ...",null);
                 } else if (data) {
                     callback("Error comparing authentication...");
                     let users = JSON.parse(data).records;
                     if (users && users.length>0)
                     {
-                        userId = users[0].Id
+                        //userId = users[0].Id
                         console.log('useridfunction'+userId);
                     }
-                    callback();
+                    callback(null,users[0].Id);
                 }
            /* .then(data => { 
                 let users = JSON.parse(data).records;
@@ -57,11 +57,11 @@ exports.execute = (req, res) => {
         
     };
     
-    getUserId(oauthObj, soql,function(err){
+    getUserId(oauthObj, soql,function(err,content){
         if (err) {
-            alert(err);
+            console.log(err);
         } else {
-            alert('Welcome');
+            userId = content;
         }
     });
     console.log('useridretunr'+userId);
