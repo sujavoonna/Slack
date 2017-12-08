@@ -21,9 +21,10 @@ exports.execute = (req, res) => {
 	var actionName = actionJSONPayload.actions[0].name;
     var slackUserName = actionJSONPayload.user.name;
     var slackUserId = actionJSONPayload.user.id;
-   // var soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'";
-    var soql = "Select id from User ";//where Slack_Name__c = '@"+slackUserName+"'";
+    var soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'";
+    //var soql = "Select id from User ";//where Slack_Name__c = '@"+slackUserName+"'";
     var oauthObj = auth.getOAuthObject(slackUserId);
+    var user;
     //console.log('soql'+soql);
    // var userid = getUserId(oauthObj,soql) ;
     force.query(oauthObj, soql)
@@ -31,7 +32,7 @@ exports.execute = (req, res) => {
         let users = JSON.parse(data).records;
         if (users && users.length>0)
         {
-            res.send("users" +users.length)
+            res.send("users" +JSON.stringify(users));
         }
     });
     
