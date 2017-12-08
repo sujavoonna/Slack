@@ -27,13 +27,13 @@ exports.execute = (req, res) => {
     var userid = getUserId(oauthObj, soql);
     //console.log('soql'+soql);
    // var userid = getUserId(oauthObj,soql) ;
-   var userId2;
+   var userId2 = "";
     force.query(oauthObj, soql)
     .then(data => { 
         let users = JSON.parse(data).records;
         if (users && users.length>0)
         {
-            userId2 = users[0].Id
+            userId2 = users[0].Id;
             
         }
     });
@@ -203,7 +203,7 @@ function getUserId(oauthObj, soql)
         if (users && users.length>0)
         {
             userId = users[0].Id
-            onsole.log('userid'+userId);
+            console.log('userid'+userId);
         }
     });
     return userId;
