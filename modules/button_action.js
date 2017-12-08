@@ -25,7 +25,7 @@ exports.execute = (req, res) => {
     //var soql = "Select id from User ";//where Slack_Name__c = '@"+slackUserName+"'";
     var oauthObj = auth.getOAuthObject(slackUserId);
    console.log('before');
-    var userid = getUserId(oauthObj, soql);
+    var userid = yield getUserId(oauthObj, soql);
     console.log('useridretunr'+userid);
        
 	//**********************************************************
@@ -185,15 +185,17 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage){
 }
 */
 function getUserId(oauthObj, soql) 
-{   var userId = "";
-    force.query(oauthObj, soql)
-    .then(data => { 
-        let users = JSON.parse(data).records;
-        if (users && users.length>0)
-        {
-            userId = users[0].Id
-            console.log('useridfunction'+userId);
-        }
+{   return co(function *(){
+        var userId = "";
+        force.query(oauthObj, soql)
+        .then(data => { 
+            let users = JSON.parse(data).records;
+            if (users && users.length>0)
+            {
+                userId = users[0].Id
+                console.log('useridfunction'+userId);
+            }
+        });
+        return (userId);
     });
-    return userId;
 }
