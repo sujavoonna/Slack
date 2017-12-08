@@ -24,6 +24,7 @@ exports.execute = (req, res) => {
     var soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'";
     var oauthObj = auth.getOAuthObject(slackUserId);
     console.log('soql'+soql);
+    var userid = getUserId(slackUserName,soql) ;
     /*force.query(oauthObj, soql)
         .then(data => {
             let user = JSON.parse(data).records;
@@ -49,7 +50,7 @@ exports.execute = (req, res) => {
         //caseId = "500e000000AmhVU",
 		//ownerId = "005i0000005PQjt"; // pw
 		//ownerId = "00531000006n0UJ"; //VS
-        userid = getUserId(slackUserName,soql) ;
+       
         console.log('userid1'+userid);
     if (actionName == "case button")
 	{		
