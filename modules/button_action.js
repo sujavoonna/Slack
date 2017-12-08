@@ -33,7 +33,7 @@ exports.execute = (req, res) => {
         if (users && users.length>0)
         {
             user = users.Id;
-            res.send("users" +JSON.stringify(users)+user);
+            res.send("users" +(users)+user);
         }
     });
     
