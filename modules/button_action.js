@@ -24,7 +24,7 @@ exports.execute = (req, res) => {
     var soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'";
     //var soql = "Select id from User ";//where Slack_Name__c = '@"+slackUserName+"'";
     var oauthObj = auth.getOAuthObject(slackUserId);
-    var user;
+    var userid;
     //console.log('soql'+soql);
    // var userid = getUserId(oauthObj,soql) ;
     force.query(oauthObj, soql)
@@ -32,9 +32,15 @@ exports.execute = (req, res) => {
         let users = JSON.parse(data).records;
         if (users && users.length>0)
         {
-            user = users.attributes.Id;
-            console.log('users'+users.attributes.Id)
-            res.send("users" +users);
+            users.forEach(function(user) {
+                if (user.id){
+                        userid = user.id;
+                        res.send('userid'+userid+users[0].Id);
+                }
+
+
+            });
+           
         }
     });
     
