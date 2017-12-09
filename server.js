@@ -13,7 +13,8 @@ let express = require('express'),
 	searchCase = require('./modules/search_case'),
 	sujaslackbutton = require('./modules/slack_button'),
 	slackmenu = require('./modules/slack_menu'),
-	buttonAction = require('./modules/button_action'),
+    buttonAction = require('./modules/button_action'),
+    user = require('./modules/user'),
 	
     app = express();
 
@@ -40,6 +41,7 @@ app.post('/case', _case.execute);
 app.post('/whoami', whoami.execute);
 app.post('/login', auth.loginLink);
 app.post('/logout', auth.logout);
+app.post('/user', user.userObject);
 app.get('/login/:slackUserId', auth.oauthLogin);
 app.get('/oauthcallback', auth.oauthCallback);
 
