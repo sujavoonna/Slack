@@ -19,14 +19,14 @@ exports.execute = (req, res) => {
     console.log('---message is name' + actionJSONPayload.user.name+'id'+actionJSONPayload.user.id);
 	//res.json(message);
 	//console.log('token'+req.body.token);
-	var actionName = actionJSONPayload.actions[0].name;
-    var slackUserName = actionJSONPayload.user.name;
-    var slackUserId = actionJSONPayload.user.id;
-    var soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'";
+	//var actionName = actionJSONPayload.actions[0].name;
+   // var slackUserName = actionJSONPayload.user.name;
+    //var slackUserId = actionJSONPayload.user.id;
+   // var soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'";
     //var soql = "Select id from User ";//where Slack_Name__c = '@"+slackUserName+"'";
    // var oauthObj = auth.getOAuthObject(slackUserId);
    console.log('before');
-    var userId ;
+    
     //getUserId(oauthObj, soql,function(userid){
     //    userId = userid;
       //  console.log(userid);
@@ -40,6 +40,10 @@ exports.execute = (req, res) => {
         //uId = user.getUserObject(User)
         subject = "test subject",
         description = "test description";
+        actionName = actionJSONPayload.actions[0].name,
+        slackUserName = actionJSONPayload.user.name,
+        slackUserId = actionJSONPayload.user.id,
+        soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'";
         //sess1 = auth.sess.user;
         //caseId = "500e000000AmhVU",
 		//ownerId = "005i0000005PQjt"; // pw
@@ -58,7 +62,7 @@ exports.execute = (req, res) => {
         let users = JSON.parse(data).records;
         if (users && users.length>0)
         {
-            userId = users[0].Id
+           var userId = users[0].Id;
             console.log('useridfunction'+userId);
             console.log('userID'+userId);
             var ownerId = arr[0];
