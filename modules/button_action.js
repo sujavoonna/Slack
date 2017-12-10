@@ -57,7 +57,9 @@ exports.execute = (req, res) => {
          
 	var arr = actionJSONPayload.actions[0].value.toString().split("|");
 	console.log('----arr[0] is ' + arr[0]);
-	console.log('----arr[1] is ' + arr[1]);  
+    console.log('----arr[1] is ' + arr[1]);  
+    var ownerId = arr[0];
+    var caseId = arr[1];
     force.query(oauthObj, soql)
     .then(data => { 
         let users = JSON.parse(data).records;
@@ -65,8 +67,6 @@ exports.execute = (req, res) => {
         {
            var userId = users[0].Id;
             console.log('userID'+userId);
-            var ownerId = arr[0];
-            var caseId = arr[1];
             force.update(oauthObj, "Case",
             {
                 id : caseId,
