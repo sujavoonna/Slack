@@ -80,7 +80,8 @@ exports.execute = (req, res) => {
             .then(data => {
                 let fields = [];
                 fields.push({title: "Subject", value: subject, short:false});
-                fields.push({title: "OwnerId", value: ownerId, short:false});
+                fields.push({title: "oldOwnerId", value: oldownerId, short:false});
+                fields.push({title: "newOwnerId", value: userId, short:false});
                 fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + caseId, short:false});
                 let message = {
                     text: "A case's owner and subject have been updated:" + new Date(),
