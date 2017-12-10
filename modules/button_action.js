@@ -2,8 +2,7 @@
 
  let auth = require("./slack-salesforce-auth"),
     force = require("./force"),
-    user = require ("/.user");
-     var sess;
+    
 exports.execute = (req, res) => {
 	//res.status(200).end() // best practice to respond with 200 status
     var actionJSONPayload = JSON.parse(req.body.payload) // parse URL-encoded payload JSON string
