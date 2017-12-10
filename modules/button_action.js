@@ -58,7 +58,7 @@ exports.execute = (req, res) => {
 	var arr = actionJSONPayload.actions[0].value.toString().split("|");
 	console.log('----arr[0] is ' + arr[0]);
     console.log('----arr[1] is ' + arr[1]);  
-    var ownerId = arr[0];
+    var oldownerId = arr[0];
     var caseId = arr[1];
     force.query(oauthObj, soql)
     .then(data => { 
@@ -72,7 +72,7 @@ exports.execute = (req, res) => {
                 id : caseId,
                 subject: "update test -- " + new Date(),
                 Slack_Assign_To__c: ownerId,
-                ownerId: ownerId,
+                ownerId: userId,
                 Other_Data_Sources__c : "slack"
                 
                 
@@ -102,7 +102,7 @@ exports.execute = (req, res) => {
             .catch((error) => {
                 if (error.code == 401) {
                     let fields = [];
-                    fields.push({title: "UserID", value: ownerId+"Test"});
+                    fields.push({title: "UserID", value: oldownerId+"Test"});
                     fields.push({title: "CaseID", value:caseId});
                     fields.push({title: "visit the URL to login", value: `https://${req.hostname}/login/`+slackUserId});
                     let message = {
@@ -119,7 +119,7 @@ exports.execute = (req, res) => {
                                 "fallback": "damn!!!!! ",
                                 "style":"Danger",
                                 "type": "button",
-                                "value": ownerId+'|'+caseId
+                                "value": oldownerId+'|'+caseId
                                }
                             ] 
                          }
@@ -140,7 +140,7 @@ exports.execute = (req, res) => {
     .catch((error) => {
         if (error.code == 401) {
             let fields = [];
-            fields.push({title: "UserID", value: ownerId+"Test"});
+            fields.push({title: "UserID", value: oldownerId+"Test"});
             fields.push({title: "CaseID", value:caseId});
             fields.push({title: "visit the URL to login", value: `https://${req.hostname}/login/`+slackUserId});
             let message = {
@@ -157,7 +157,7 @@ exports.execute = (req, res) => {
                         "fallback": "damn!!!!! ",
                         "style":"Danger",
                         "type": "button",
-                        "value": ownerId+'|'+caseId
+                        "value": oldownerId+'|'+caseId
                        }
                     ] 
                  }
