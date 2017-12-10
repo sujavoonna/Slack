@@ -14,7 +14,7 @@ let express = require('express'),
 	sujaslackbutton = require('./modules/slack_button'),
 	slackmenu = require('./modules/slack_menu'),
     buttonAction = require('./modules/button_action'),
-    user = require('./modules/user'),
+   
 	
     app = express();
 
@@ -43,7 +43,7 @@ app.post('/login', auth.loginLink);
 app.post('/logout', auth.logout);
 app.get('/login/:slackUserId', auth.oauthLogin);
 app.get('/oauthcallback', auth.oauthCallback);
-app.get('/user', user.userObject);
+
 
 
 app.listen(app.get('port'), function () {
