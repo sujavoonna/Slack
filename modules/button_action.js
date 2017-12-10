@@ -137,6 +137,15 @@ exports.execute = (req, res) => {
         });
         
         }
+    })
+    .catch((error) => {
+        if (error.code == 401) {
+            //res.send(`Visit this URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
+            return;
+        } else {
+           // res.send("An error as occurred" +error.message);
+           return;
+        }
     });    
     
    	 
