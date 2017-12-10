@@ -41,7 +41,7 @@ exports.execute = (req, res) => {
         oauthObj = auth.getOAuthObject(slackUserId),
         //uId = user.getUserObject(User)
         subject = "test subject",
-        description = "test description";
+        description = "test description",
         actionName = actionJSONPayload.actions[0].name,
         slackUserName = actionJSONPayload.user.name,
          soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'";
