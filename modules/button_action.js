@@ -1,7 +1,9 @@
 "use strict";
 
  let auth = require("./slack-salesforce-auth"),
-    force = require("./force"),
+// user = require ("/.user"),
+    force = require("./force");
+   
     
 exports.execute = (req, res) => {
 	//res.status(200).end() // best practice to respond with 200 status
