@@ -36,15 +36,15 @@ exports.execute = (req, res) => {
        
 	//**********************************************************
 	 
-	let //slackUserId = req.body.user_id,
+    let //slackUserId = req.body.user_id,
+    slackUserId = actionJSONPayload.user.id,
         oauthObj = auth.getOAuthObject(slackUserId),
         //uId = user.getUserObject(User)
         subject = "test subject",
         description = "test description";
         actionName = actionJSONPayload.actions[0].name,
         slackUserName = actionJSONPayload.user.name,
-        slackUserId = actionJSONPayload.user.id,
-        soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'";
+         soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'";
         //sess1 = auth.sess.user;
         //caseId = "500e000000AmhVU",
 		//ownerId = "005i0000005PQjt"; // pw
