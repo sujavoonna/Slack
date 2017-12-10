@@ -32,7 +32,7 @@ exports.execute = (req, res) => {
     //    userId = userid;
       //  console.log(userid);
    // });
-    console.log('useridretunr'+userId);
+   // console.log('useridretunr'+userId);
        
 	//**********************************************************
 	 
