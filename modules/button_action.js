@@ -73,8 +73,9 @@ exports.execute = (req, res) => {
                 let cases = JSON.parse(data).records;
                
                     //console.log(cases.requestSFUser+user);
-                    console.log(JSON.stringify(data)+"user");
-                    console.log(data[0].Message+"Message");
+                    console.log(data+"userjson");
+                    console.log(cases+"parsejson");
+                    console.log(cases[0].Message+"Message");
                
                 
                 let fields = [];
