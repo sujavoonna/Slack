@@ -18,35 +18,22 @@ exports.execute = (req, res) => {
 	console.log('----in button_action, before res.json(message) ');
 	
     console.log('---message is name' + actionJSONPayload.user.name+'id'+actionJSONPayload.user.id);
-	//res.json(message);
-	//console.log('token'+req.body.token);
-	//var actionName = actionJSONPayload.actions[0].name;
-   // var slackUserName = actionJSONPayload.user.name;
-    //var slackUserId = actionJSONPayload.user.id;
-   // var soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'";
-    //var soql = "Select id from User ";//where Slack_Name__c = '@"+slackUserName+"'";
-   // var oauthObj = auth.getOAuthObject(slackUserId);
+
    console.log('before');
     
-    //getUserId(oauthObj, soql,function(userid){
-    //    userId = userid;
-      //  console.log(userid);
-   // });
-   // console.log('useridretunr'+userId);
-       
+          
 	//**********************************************************
 	 
     let //slackUserId = req.body.user_id,
     slackUserId = actionJSONPayload.user.id,
         oauthObj = auth.getOAuthObject(slackUserId),
-        //uId = user.getUserObject(User)
         subject = "test subject",
         description = "test description",
         actionName = actionJSONPayload.actions[0].name,
         slackUserName = actionJSONPayload.user.name,
          soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'";
-        //sess1 = auth.sess.user;
-        //caseId = "500e000000AmhVU",
+      
+         //caseId = "500e000000AmhVU",
 		//ownerId = "005i0000005PQjt"; // pw
 		//ownerId = "00531000006n0UJ"; //VS
        
@@ -67,13 +54,17 @@ exports.execute = (req, res) => {
         {
            var userId = users[0].Id;
             console.log('userID'+userId);
-            force.update(oauthObj, "Case",
+            //force.update(oauthObj, "Case",
+            force.apexrest(oauthObj,"/ClaimCase",
             {
-                id : caseId,
-                subject: "update test -- " + new Date(),
-                Slack_Assign_To__c: userId,
-                ownerId: userId,
-                Other_Data_Sources__c : "slack"
+                //id : caseId,
+                //subject: "update test -- " + new Date(),
+               // Slack_Assign_To__c: userId,
+                //ownerId: userId,
+                //Other_Data_Sources__c : "slack"
+                sfuserid:userId,
+                caseid:caseId
+
                 
                 
             })
