@@ -55,28 +55,26 @@ exports.execute = (req, res) => {
            var userId = users[0].Id;
             console.log('userID'+userId);
             //force.update(oauthObj, "Case",
-            var params = {
-                'sfuserid':userId,
-                'caseid':caseId
-            }; 
-            force.apexrest(oauthObj,"/ClaimCase?",params)
-            /*{
+            
+            force.apexrest(oauthObj,"/ClaimCase?",
+            {
                 //id : caseId,
                 //subject: "update test -- " + new Date(),
                // Slack_Assign_To__c: userId,
                 //ownerId: userId,
                 //Other_Data_Sources__c : "slack"
-                "sfuserid":userId,
-                "caseid":caseId
+                'sfuserid':userId,
+                'caseid':caseId
 
                 
                 
-            })*/
+            })
             .then(data=> {
                 let cases = JSON.parse(data).records;
                
                     //console.log(cases.requestSFUser+user);
                     console.log(JSON.stringify(data)+"user");
+                    console.log(data.Message+"Message");
                
                 
                 let fields = [];
