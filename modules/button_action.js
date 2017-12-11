@@ -71,7 +71,7 @@ exports.execute = (req, res) => {
             .then(data => {
                 let cases = JSON.parse(data).records;
                
-                    console.log(cases.requestSFUser+user);
+                    //console.log(cases.requestSFUser+user);
                     console.log(JSON.parse(data).records.toString)
                
                 
