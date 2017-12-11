@@ -71,10 +71,9 @@ exports.execute = (req, res) => {
             })
             .then(data=> {
                      let casereturnInfo = JSON.parse(data);          
-                    //console.log(cases.requestSFUser+user);
-                    console.log(data+"userjson");
-                   console.log(JSON.parse(data)+"userjson");
-                    console.log(casereturnInfo.requestSFUser.Type+casereturnInfo.requestSFUser.SlackName+"Message2");
+                   // console.log(data+"userjson");
+                   //console.log(JSON.parse(data)+"userjson");
+                    console.log(casereturnInfo.requestSFUser.Type+casereturnInfo.requestSFUser.SlackName+"Message2"+casereturnInfo.Message);
                
                 
                 let fields = [];
