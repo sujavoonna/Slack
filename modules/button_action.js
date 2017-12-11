@@ -73,9 +73,9 @@ exports.execute = (req, res) => {
                  let casereturnInfo = JSON.parse(data),
                 statusMessage = "";         
                  console.log(casereturnInfo.requestSFUser.Type+casereturnInfo.requestSFUser.SlackName+"Message2"+casereturnInfo.Message);
-                if(casereturnInfo.Success == 'Success')
+                if(casereturnInfo.Success == "Success")
                 {statusMessage = "Case's owner  have been updated"}
-                if(casereturnInfo.Success == 'CaseAlreadyAssigned')
+                if(casereturnInfo.Success == "CaseAlreadyAssigned")
                 {statusMessage = "Case's owner  have not been updated"};
                 
                 let fields = [];
