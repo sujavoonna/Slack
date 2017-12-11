@@ -73,7 +73,7 @@ exports.execute = (req, res) => {
                                
                     //console.log(cases.requestSFUser+user);
                     console.log(data+"userjson");
-                   console.log(JSON.parse(data).records+"userjson");
+                   console.log(JSON.parse(data)+"userjson");
                     //console.log(data.requestSFUser.Type+data.requestSFUser.SlackName+"Message2");
                
                 
