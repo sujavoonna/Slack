@@ -55,7 +55,7 @@ exports.execute = (req, res) => {
            var userId = users[0].Id;
             console.log('userID'+userId);
             //force.update(oauthObj, "Case",
-            force.apexrest(oauthObj,"/ClaimCase/",
+            force.apexrest(oauthObj,"/ClaimCase?",
             {
                 //id : caseId,
                 //subject: "update test -- " + new Date(),
@@ -72,7 +72,7 @@ exports.execute = (req, res) => {
                 let cases = JSON.parse(data).records;
                
                     //console.log(cases.requestSFUser+user);
-                    console.log(JSON.parse(data).records+'user');
+                    console.log(JSON.stringify(data));
                
                 
                 let fields = [];
