@@ -73,9 +73,9 @@ exports.execute = (req, res) => {
                  let casereturnInfo = JSON.parse(data),
                 statusMessage = "";         
                  console.log(casereturnInfo.requestSFUser.Type+casereturnInfo.requestSFUser.SlackName+"Message2"+casereturnInfo.Message);
-                if(casereturnInfo.Success == "Success")
+                if(casereturnInfo.Success)
                 {statusMessage = "Case's owner  have been updated"}
-                if(casereturnInfo.Success == "CaseAlreadyAssigned")
+                else
                 {statusMessage = "Case's owner  have not been updated"};
                 
                 let fields = [];
@@ -83,7 +83,7 @@ exports.execute = (req, res) => {
                 fields.push({title: "oldOwnerId", value: oldownerId, short:false});
                 fields.push({title: "newOwnerId", value: userId, short:false});*/
                 fields.push({title: "Update Status Reason", value: casereturnInfo.Status, short:false});
-                if(casereturnInfo.Success == 'CaseAlreadyAssigned')
+                if(!casereturnInfo.Success)
                 {fields.push({title: "Update Status Message ", value: casereturnInfo.Message, short:false});};
                 fields.push({title: "OldOwner", value: casereturnInfo.oldCaseOwner.Name, short:false});
                 fields.push({title: "RequestedUser", value: casereturnInfo.requestSFUser.Name, short:false})
