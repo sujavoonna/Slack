@@ -70,12 +70,10 @@ exports.execute = (req, res) => {
                 
             })
             .then(data=> {
-                let cases = JSON.parse(data).records;
-               
+                               
                     //console.log(cases.requestSFUser+user);
                     console.log(data+"userjson");
-                    console.log(cases+"parsejson");
-                    console.log(cases[0].Message+"Message");
+                    console.log(data[0].Message+"Message");
                
                 
                 let fields = [];
