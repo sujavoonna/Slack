@@ -62,8 +62,8 @@ exports.execute = (req, res) => {
                // Slack_Assign_To__c: userId,
                 //ownerId: userId,
                 //Other_Data_Sources__c : "slack"
-                sfuserid:userId,
-                caseid:caseId
+                "sfuserid":userId,
+                "caseid":caseId
 
                 
                 
@@ -72,7 +72,7 @@ exports.execute = (req, res) => {
                 let cases = JSON.parse(data).records;
                
                     //console.log(cases.requestSFUser+user);
-                    console.log(JSON.stringify(data));
+                    console.log(JSON.stringify(data)+user);
                
                 
                 let fields = [];
