@@ -70,11 +70,9 @@ exports.execute = (req, res) => {
                 
             })
             .then(data=> {
-                     let casereturnInfo = JSON.parse(data),
-                         statusMessage = "";         
-                   // console.log(data+"userjson");
-                   //console.log(JSON.parse(data)+"userjson");
-                    console.log(casereturnInfo.requestSFUser.Type+casereturnInfo.requestSFUser.SlackName+"Message2"+casereturnInfo.Message);
+                 let casereturnInfo = JSON.parse(data),
+                statusMessage = "";         
+                 console.log(casereturnInfo.requestSFUser.Type+casereturnInfo.requestSFUser.SlackName+"Message2"+casereturnInfo.Message);
                 if(casereturnInfo.Success)
                 {statusMessage = "Case's owner  have been updated"}
                 else
@@ -84,7 +82,7 @@ exports.execute = (req, res) => {
                 /*fields.push({title: "Subject", value: subject, short:false});
                 fields.push({title: "oldOwnerId", value: oldownerId, short:false});
                 fields.push({title: "newOwnerId", value: userId, short:false});*/
-                fields.push({title: "Status", value: casereturnInfo.Status, short:false});
+                fields.push({title: "Update Status Reason", value: casereturnInfo.Status, short:false});
                 fields.push({title: "OldOwner", value: casereturnInfo.oldCaseOwner.Name, short:false});
                 fields.push({title: "RequestedUser", value: casereturnInfo.requestSFUser.Name, short:false})
                 fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + caseId, short:false});
