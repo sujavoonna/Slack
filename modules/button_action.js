@@ -70,10 +70,10 @@ exports.execute = (req, res) => {
             })
             .then(data => {
                 let cases = JSON.parse(data).records;
-                if(cases.length>0){
+               
                     console.log(cases.requestSFUser+user);
                     console.log(JSON.parse(data).records.toString)
-                }
+               
                 
                 let fields = [];
                 fields.push({title: "Subject", value: subject, short:false});
