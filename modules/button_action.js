@@ -97,8 +97,8 @@ exports.execute = (req, res) => {
                 
                  
             })
-            .catch((error) => {
-                if (error.code == 401) {
+            .catch((Error) => {
+                if (Error.code == 401) {
                     let fields = [];
                     fields.push({title: "UserID", value: oldownerId+"Test"});
                     fields.push({title: "CaseID", value:caseId});
@@ -129,7 +129,7 @@ exports.execute = (req, res) => {
                    res.json(message);
     
                 } else {
-                    res.send("An error as occurred" +error.message);
+                    res.send("An error as occurred" +Error.Message);
                 }
         });
         
