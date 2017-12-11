@@ -68,11 +68,11 @@ exports.execute = (req, res) => {
                 
                 
             })
-            .then(data => {
-                let cases = JSON.parse(data).records;
+            .then(Message => {
+                let cases = JSON.parse(Message).records;
                
                     //console.log(cases.requestSFUser+user);
-                    console.log(JSON.parse(data).records+'user');
+                    console.log(JSON.parse(Message).records+'user');
                
                 
                 let fields = [];
