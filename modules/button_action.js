@@ -83,7 +83,8 @@ exports.execute = (req, res) => {
                 fields.push({title: "oldOwnerId", value: oldownerId, short:false});
                 fields.push({title: "newOwnerId", value: userId, short:false});*/
                 fields.push({title: "Update Status Reason", value: casereturnInfo.Status, short:false});
-                fields.push({title: "Update Status Message ", value: casereturnInfo.Message, short:false});
+                if(casereturnInfo.Success == 'CaseAlreadyAssigned')
+                {fields.push({title: "Update Status Message ", value: casereturnInfo.Message, short:false});};
                 fields.push({title: "OldOwner", value: casereturnInfo.oldCaseOwner.Name, short:false});
                 fields.push({title: "RequestedUser", value: casereturnInfo.requestSFUser.Name, short:false})
                 fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + caseId, short:false});
