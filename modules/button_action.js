@@ -74,7 +74,7 @@ exports.execute = (req, res) => {
                
                     //console.log(cases.requestSFUser+user);
                     console.log(JSON.stringify(data)+"user");
-                    console.log(cases+"Message");
+                    console.log(data[0].Message+"Message");
                
                 
                 let fields = [];
