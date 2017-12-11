@@ -56,15 +56,15 @@ exports.execute = (req, res) => {
             console.log('userID'+userId);
             //force.update(oauthObj, "Case",
             
-            force.apexrest(oauthObj,"/ClaimCase?",
+            force.apexrest(oauthObj,"/ClaimCase?sfuserid="+userId+"&"+"caseid="+caseId,
             {
                 //id : caseId,
                 //subject: "update test -- " + new Date(),
                // Slack_Assign_To__c: userId,
                 //ownerId: userId,
                 //Other_Data_Sources__c : "slack"
-                'sfuserid':userId,
-                'caseid':caseId
+               // "sfuserid":userId,
+                //"caseid":caseId
 
                 
                 
