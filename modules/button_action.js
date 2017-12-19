@@ -31,12 +31,8 @@ exports.execute = (req, res) => {
         description = "test description",
         actionName = actionJSONPayload.actions[0].name,
         slackUserName = actionJSONPayload.user.name,
-         soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'";
+        soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'";
       
-         //caseId = "500e000000AmhVU",
-		//ownerId = "005i0000005PQjt"; // pw
-		//ownerId = "00531000006n0UJ"; //VS
-       
         //console.log('userid1'+userid);
     if (actionName == "case button")
 	{		
@@ -74,9 +70,9 @@ exports.execute = (req, res) => {
                 statusMessage = "";         
                  console.log(casereturnInfo.requestSFUser.Type+casereturnInfo.requestSFUser.SlackName+"Message2"+casereturnInfo.Message);
                 if(casereturnInfo.Success)
-                {statusMessage = caseId+"Case's owner  has now been claimed by :"+casereturnInfo.requestSFUser.Name}
+                {statusMessage = (caseId).bold()+" Case's owner  has now been claimed by :"+casereturnInfo.requestSFUser.Name}
                 else
-                {statusMessage =caseId+ casereturnInfo.Message + "by:"+casereturnInfo.oldCaseOwner.Name};
+                {statusMessage =(caseId).bold()+ " has already been claimed by:"+casereturnInfo.oldCaseOwner.Name};
                 
                 let fields = [];
                 fields.push({title: "Subject", value: casereturnInfo.subject, short:false});
