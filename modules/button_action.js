@@ -69,12 +69,16 @@ exports.execute = (req, res) => {
                  let casereturnInfo = JSON.parse(data),
                 statusMessage = "";         
                  console.log(casereturnInfo.requestSFUser.Type+casereturnInfo.requestSFUser.SlackName+"Message2"+casereturnInfo.Message);
-                if(casereturnInfo.Success)
+                /*if(casereturnInfo.Success)
                 {statusMessage = (caseId).bold()+" Case's owner  has now been claimed by :"+casereturnInfo.requestSFUser.Name}
                 else
-                {statusMessage =(caseId).bold()+ " has already been claimed by:"+casereturnInfo.oldCaseOwner.Name}; 
+                {statusMessage =(caseId).bold()+ " has already been claimed by:"+casereturnInfo.oldCaseOwner.Name}; */
                 
                 let fields = [];
+                if(!casereturnInfo.Success)
+                fields.push({title: caseId, value: "has already been claimed by:"+casereturnInfo.oldCaseOwner.Name, short:false});
+                else
+                fields.push({title: caseId, value: "Case's owner  has now been claimed by :"+casereturnInfo.requestSFUser.Name, short:false});
                 fields.push({title: "Subject", value: casereturnInfo.subject, short:false});
                // fields.push({title: "oldOwnerId", value: oldownerId, short:false});
                // fields.push({title: "newOwnerId", value: userId, short:false});
@@ -86,9 +90,9 @@ exports.execute = (req, res) => {
                 fields.push({title: "Case Link:", value: oauthObj.instance_url + "/" + caseId, short:false});
                 let message = {
                    // text: "A case's owner and subject have been updated:" + new Date(),
-                   text:statusMessage,
+                  // text:statusMessage,
                     attachments: [
-                        {color: "#F2CF5B", fields: fields
+                        {color: "#F2CF5B", fields: fields.title+fields.Value
                          
                 
                         }
