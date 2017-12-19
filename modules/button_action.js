@@ -176,9 +176,10 @@ exports.execute = (req, res) => {
 	if (actionName == "case detail button")
 	{		
         console.log('----button value is ' + actionJSONPayload.actions[0].value);
+        console.log('req'+req.hostname);
         var arr = actionJSONPayload.actions[0].value.toString().split("|");
         var caseId = arr[1];
-        var url = 'https://${req.hostname}/'+caseId;
+        var url = 'https://${req.hostname}'/+caseId;
         res.send(url);
     }
 	if (actionName == "case status")
