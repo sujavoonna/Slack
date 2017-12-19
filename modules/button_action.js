@@ -27,7 +27,7 @@ exports.execute = (req, res) => {
     let //slackUserId = req.body.user_id,
     slackUserId = actionJSONPayload.user.id,
         oauthObj = auth.getOAuthObject(slackUserId),
-        subject = "test subject",
+       // subject = "test subject",
         description = "test description",
         actionName = actionJSONPayload.actions[0].name,
         slackUserName = actionJSONPayload.user.name,
