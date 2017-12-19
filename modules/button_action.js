@@ -173,7 +173,13 @@ exports.execute = (req, res) => {
     
    	 
     }
-	
+	if (actionName == "case detail button")
+	{		
+        console.log('----button value is ' + actionJSONPayload.actions[0].value);
+        var caseId = arr[1];
+        var url = oauthObj.instance_url + "/" + caseId
+        res.send(url);
+    }
 	if (actionName == "case status")
 	{		
     
