@@ -41,8 +41,9 @@ exports.execute = (req, res) => {
 	var arr = actionJSONPayload.actions[0].value.toString().split("|");
 	console.log('----arr[0] is ' + arr[0]);
     console.log('----arr[1] is ' + arr[1]);  
-    var oldownerId = arr[0];
+    var subject = arr[0];
     var caseId = arr[1];
+    var createdBy = arr[2];
     force.query(oauthObj, soql)
     .then(data => { 
         let users = JSON.parse(data).records;
@@ -79,8 +80,8 @@ exports.execute = (req, res) => {
                 { fields.push({title: caseId+" has already been claimed by: ", value:casereturnInfo.oldCaseOwner.Name, short:false});}
               else
                 {fields.push({title: caseId +" has now been claimed by", value:casereturnInfo.requestSFUser.Name, short:false});};
-                fields.push({title: "Subject :", value: casereturnInfo.subject, short:false}); 
-               // fields.push({title: "oldOwnerId", value: oldownerId, short:false});
+                fields.push({title: "Subject :", value: subject.subject, short:false}); 
+                fields.push({title: "Created By", value: createdBy, short:false});
                // fields.push({title: "newOwnerId", value: userId, short:false});
                // fields.push({title: "Update Status Reason", value: casereturnInfo.Status, short:false});
                // if(!casereturnInfo.Success)
@@ -109,9 +110,9 @@ exports.execute = (req, res) => {
             .catch((Error) => {
                 if (Error.code == 401) {
                     let fields = [];
-                    fields.push({title: "UserID", value: oldownerId+"Test"});
                     fields.push({title: "CaseID", value:caseId});
-                    fields.push({title: "visit the URL to login", value: `https://${req.hostname}/login/`+slackUserId});
+                    fields.push({title: "Subject", value: subject});
+                    fields.push({title: "visit the URL to login and Authenticate", value: `https://${req.hostname}/login/`+slackUserId});
                     let message = {
                          attachments: [
                             {color: "#F2CF5B", fields: fields,
@@ -122,11 +123,11 @@ exports.execute = (req, res) => {
                                 
                                {
                                 "name": "case button",
-                                "text": "Update Case Button From SF",
+                                "text": "Claim Case",
                                 "fallback": "damn!!!!! ",
                                 "style":"Danger",
                                 "type": "button",
-                                "value": oldownerId+'|'+caseId
+                                "value": subject+'|'+caseId+'|'+createdBy
                                }
                             ] 
                          }
@@ -147,9 +148,9 @@ exports.execute = (req, res) => {
     .catch((error) => {
         if (error.code == 401) {
             let fields = [];
-            fields.push({title: "UserID", value: oldownerId+"Test"});
             fields.push({title: "CaseID", value:caseId});
-            fields.push({title: "visit the URL to login", value: `https://${req.hostname}/login/`+slackUserId});
+            fields.push({title: "Subject", value: subject});
+            fields.push({title: "visit the URL to login and Authenticate", value: `https://${req.hostname}/login/`+slackUserId});
             let message = {
                  attachments: [
                     {color: "#F2CF5B", fields: fields,
@@ -160,11 +161,11 @@ exports.execute = (req, res) => {
                         
                        {
                         "name": "case button",
-                        "text": "Update Case Button From SF",
+                        "text": "Claim Case",
                         "fallback": "damn!!!!! ",
                         "style":"Danger",
                         "type": "button",
-                        "value": oldownerId+'|'+caseId
+                        "value": subject+'|'+caseId+'|'+createdBy
                        }
                     ] 
                  }
