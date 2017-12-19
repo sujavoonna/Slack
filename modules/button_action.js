@@ -81,7 +81,7 @@ exports.execute = (req, res) => {
               else
                 {fields.push({title: caseId +" has now been claimed by", value:casereturnInfo.requestSFUser.Name, short:false});};
                 fields.push({title: "Subject :", value: subject.subject, short:false}); 
-                fields.push({title: "Created By", value: createdBy, short:false});
+                fields.push({title: "Case Creator", value: createdBy, short:false});
                // fields.push({title: "newOwnerId", value: userId, short:false});
                // fields.push({title: "Update Status Reason", value: casereturnInfo.Status, short:false});
                // if(!casereturnInfo.Success)
@@ -112,6 +112,7 @@ exports.execute = (req, res) => {
                     let fields = [];
                     fields.push({title: "CaseID", value:caseId});
                     fields.push({title: "Subject", value: subject});
+                    fields.push({title: "Case Creator", value: createdBy, short:false});
                     fields.push({title: "visit the URL to login and Authenticate", value: `https://${req.hostname}/login/`+slackUserId});
                     let message = {
                          attachments: [
@@ -150,6 +151,7 @@ exports.execute = (req, res) => {
             let fields = [];
             fields.push({title: "CaseID", value:caseId});
             fields.push({title: "Subject", value: subject});
+            fields.push({title: "Case Creator", value: createdBy, short:false});
             fields.push({title: "visit the URL to login and Authenticate", value: `https://${req.hostname}/login/`+slackUserId});
             let message = {
                  attachments: [
