@@ -31,7 +31,7 @@ exports.execute = (req, res) => {
         description = "test description",
         actionName = actionJSONPayload.actions[0].name,
         slackUserName = actionJSONPayload.user.name,
-        soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'";
+        soql = "Select id from User where Slack_Name__c = '@"+slackUserName+"'"; 
       
         //console.log('userid1'+userid);
     if (actionName == "case button")
