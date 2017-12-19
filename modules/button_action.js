@@ -72,7 +72,7 @@ exports.execute = (req, res) => {
                 if(casereturnInfo.Success)
                 {statusMessage = (caseId).bold()+" Case's owner  has now been claimed by :"+casereturnInfo.requestSFUser.Name}
                 else
-                {statusMessage =(caseId).bold()+ " has already been claimed by:"+casereturnInfo.oldCaseOwner.Name};
+                {statusMessage =(caseId).bold()+ " has already been claimed by:"+casereturnInfo.oldCaseOwner.Name}; 
                 
                 let fields = [];
                 fields.push({title: "Subject", value: casereturnInfo.subject, short:false});
