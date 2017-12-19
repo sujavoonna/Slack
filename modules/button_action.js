@@ -55,15 +55,7 @@ exports.execute = (req, res) => {
             
             force.apexrest(oauthObj,"/ClaimCase?sfuserid="+userId+"&"+"caseid="+caseId,
             {
-                //id : caseId,
-                //subject: "update test -- " + new Date(),
-               // Slack_Assign_To__c: userId,
-                //ownerId: userId,
-                //Other_Data_Sources__c : "slack"
-               // "sfuserid":userId,
-                //"caseid":caseId
-
-                
+                   
                 
             })
             .then(data=> {
@@ -79,15 +71,10 @@ exports.execute = (req, res) => {
                if(!casereturnInfo.Success) 
                 { fields.push({title: caseId+" has already been claimed by: ", value:casereturnInfo.oldCaseOwner.Name, short:false});}
               else
-                {fields.push({title: caseId +" has now been claimed by", value:casereturnInfo.requestSFUser.Name, short:false});};
-                fields.push({title: "Subject :", value: subject.subject, short:false}); 
-                fields.push({title: "Case Creator", value: createdBy, short:false});
-               // fields.push({title: "newOwnerId", value: userId, short:false});
-               // fields.push({title: "Update Status Reason", value: casereturnInfo.Status, short:false});
-               // if(!casereturnInfo.Success)
-                //{fields.push({title: "Update Status Message ", value: casereturnInfo.Message, short:false});};
-               // fields.push({title: "OldOwner", value: casereturnInfo.oldCaseOwner.Name, short:false});
-              //  fields.push({title: "RequestedUser", value: casereturnInfo.requestSFUser.Name, short:false})
+                {fields.push({title: caseId +" has now been claimed by "+casereturnInfo.requestSFUser.Name, value:"", short:false});};
+                fields.push({title: "Subject : "+subject, value: "", short:false}); 
+                fields.push({title: "Case Creator: "+createdBy, value: "", short:false});
+              
                 fields.push({title: "Case Link:", value: oauthObj.instance_url + "/" + caseId, short:false});
                 let message = {
                    // text: "A case's owner and subject have been updated:" + new Date(),
@@ -110,9 +97,9 @@ exports.execute = (req, res) => {
             .catch((Error) => {
                 if (Error.code == 401) {
                     let fields = [];
-                    fields.push({title: "CaseID", value:caseId});
-                    fields.push({title: "Subject", value: subject});
-                    fields.push({title: "Case Creator", value: createdBy, short:false});
+                    fields.push({title: "CaseID : " +caseId, value:""});
+                    fields.push({title: "Subject : "+subject, value: ""});
+                    fields.push({title: "Case Creator : "+createdBy, value: "", short:false});
                     fields.push({title: "visit the URL to login and Authenticate", value: `https://${req.hostname}/login/`+slackUserId});
                     let message = {
                          attachments: [
@@ -149,9 +136,9 @@ exports.execute = (req, res) => {
     .catch((error) => {
         if (error.code == 401) {
             let fields = [];
-            fields.push({title: "CaseID", value:caseId});
-            fields.push({title: "Subject", value: subject});
-            fields.push({title: "Case Creator", value: createdBy, short:false});
+            fields.push({title: "CaseID : " +caseId, value:""});
+            fields.push({title: "Subject : "+subject, value: ""});
+            fields.push({title: "Case Creator : "+createdBy, value: "", short:false});
             fields.push({title: "visit the URL to login and Authenticate", value: `https://${req.hostname}/login/`+slackUserId});
             let message = {
                  attachments: [
