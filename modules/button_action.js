@@ -92,7 +92,7 @@ exports.execute = (req, res) => {
                    // text: "A case's owner and subject have been updated:" + new Date(),
                   // text:statusMessage,
                     attachments: [
-                        {color: "#F2CF5B", fields: fields.title+fields.Value
+                        {color: "#F2CF5B", fields: fields
                          
                 
                         }
