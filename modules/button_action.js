@@ -44,6 +44,7 @@ exports.execute = (req, res) => {
     var subject = arr[0];
     var caseId = arr[1];
     var createdBy = arr[2];
+    var caseNumber = arr[3];
     force.query(oauthObj, soql)
     .then(data => { 
         let users = JSON.parse(data).records;
@@ -136,7 +137,7 @@ exports.execute = (req, res) => {
     .catch((error) => {
         if (error.code == 401) {
             let fields = [];
-            fields.push({title: "CaseID : " +caseId, value:""});
+            fields.push({title: "Case# : " +caseNumber, value:""});
             fields.push({title: "Subject : "+subject, value: ""});
             fields.push({title: "Case Creator : "+createdBy, value: "", short:false});
             fields.push({title: "visit the URL to login and Authenticate", value: `https://${req.hostname}/login/`+slackUserId});
