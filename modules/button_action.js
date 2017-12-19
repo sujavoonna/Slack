@@ -79,7 +79,7 @@ exports.execute = (req, res) => {
                 fields.push({title: caseId, value: "has already been claimed by:"+casereturnInfo.oldCaseOwner.Name, short:false});
                 else
                 fields.push({title: caseId, value: "Case's owner  has now been claimed by :"+casereturnInfo.requestSFUser.Name, short:false});
-                fields.push({title: "Subject", value: casereturnInfo.subject, short:false}); 
+                fields.push({title: "Subject :", value: casereturnInfo.subject, short:false}); 
                // fields.push({title: "oldOwnerId", value: oldownerId, short:false});
                // fields.push({title: "newOwnerId", value: userId, short:false});
                // fields.push({title: "Update Status Reason", value: casereturnInfo.Status, short:false});
