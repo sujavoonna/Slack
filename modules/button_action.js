@@ -73,7 +73,7 @@ exports.execute = (req, res) => {
                 { fields.push({title:"Case# : "+ casereturnInfo.oldCaseInfo.CaseNum+" has already been claimed by: ", value:casereturnInfo.oldCaseOwner.Name, short:false});}
               else
                 {fields.push({title: "Case# : "+casereturnInfo.oldCaseInfo.CaseNum +" has now been claimed by "+casereturnInfo.requestSFUser.Name, value:"", short:false});};
-                fields.push({title: "Subject : "+subject, value: "", short:false}); 
+                fields.push({title: "Case Subject : "+subject, value: "", short:false}); 
                 fields.push({title: "Case Creator: "+createdBy, value: "", short:false});
               
                 fields.push({title: "Case Link:", value: oauthObj.instance_url + "/" + caseId, short:false});
