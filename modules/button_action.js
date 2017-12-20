@@ -70,7 +70,7 @@ exports.execute = (req, res) => {
                 
                 let fields = [];
                if(!casereturnInfo.Success) 
-                { fields.push({title:"Case# : "+ casereturnInfo.oldCaseInfo.CaseNum+" has already been claimed by: ", value:casereturnInfo.oldCaseOwner.Name, short:false});}
+                { fields.push({title:"Case# : "+ casereturnInfo.oldCaseInfo.CaseNum+" has already been claimed by "+casereturnInfo.oldCaseOwner.Name, value:"", short:false});}
               else
                 {fields.push({title: "Case# : "+casereturnInfo.oldCaseInfo.CaseNum +" has now been claimed by "+casereturnInfo.requestSFUser.Name, value:"", short:false});};
                 fields.push({title: "Case Subject : "+subject, value: "", short:false}); 
