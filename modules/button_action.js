@@ -76,7 +76,7 @@ exports.execute = (req, res) => {
                 fields.push({title: "Case Subject : "+subject, value: "", short:false}); 
                 fields.push({title: "Case Creator : "+createdBy, value: "", short:false});
               
-                fields.push({title: "Case Link : "+oauthObj.instance_url + "/" + caseId, value: "", short:false});
+                fields.push({title: "Case Link : ", value: oauthObj.instance_url + "/" + caseId, short:false});
                 let message = {
                    // text: "A case's owner and subject have been updated:" + new Date(),
                   // text:statusMessage,
