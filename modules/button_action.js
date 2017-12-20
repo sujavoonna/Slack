@@ -99,7 +99,7 @@ exports.execute = (req, res) => {
                 if (Error.code == 401) {
                     let fields = [];
                     fields.push({title: "CaseID : " +caseId, value:""});
-                    fields.push({title: "Subject : "+subject, value: ""});
+                    fields.push({title: "Case Subject : "+subject, value: ""});
                     fields.push({title: "Case Creator : "+createdBy, value: "", short:false});
                     fields.push({title: "visit the URL to login and Authenticate", value: `https://${req.hostname}/login/`+slackUserId});
                     let message = {
@@ -138,7 +138,7 @@ exports.execute = (req, res) => {
         if (error.code == 401) {
             let fields = [];
             fields.push({title: "Case# : " +caseNumber, value:""});
-            fields.push({title: "Subject : "+subject, value: ""});
+            fields.push({title: " Case Subject : "+subject, value: ""});
             fields.push({title: "Case Creator : "+createdBy, value: "", short:false});
             fields.push({title: "visit the URL to login and Authenticate", value: `https://${req.hostname}/login/`+slackUserId});
             let message = {
