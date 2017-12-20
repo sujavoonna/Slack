@@ -74,9 +74,9 @@ exports.execute = (req, res) => {
               else
                 {fields.push({title: "Case# : "+casereturnInfo.oldCaseInfo.CaseNum +" has now been claimed by "+casereturnInfo.requestSFUser.Name, value:"", short:false});};
                 fields.push({title: "Case Subject : "+subject, value: "", short:false}); 
-                fields.push({title: "Case Creator: "+createdBy, value: "", short:false});
+                fields.push({title: "Case Creator : "+createdBy, value: "", short:false});
               
-                fields.push({title: "Case Link:", value: oauthObj.instance_url + "/" + caseId, short:false});
+                fields.push({title: "Case Link : "+oauthObj.instance_url + "/" + caseId, value: "", short:false});
                 let message = {
                    // text: "A case's owner and subject have been updated:" + new Date(),
                   // text:statusMessage,
