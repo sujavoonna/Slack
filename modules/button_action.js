@@ -70,13 +70,13 @@ exports.execute = (req, res) => {
                 
                 let fields = [];
                if(!casereturnInfo.Success) 
-                { fields.push({title:"Case# : "+ casereturnInfo.oldCaseInfo.CaseNum+" has already been claimed by "+casereturnInfo.oldCaseOwner.Name, value:"", short:false});}
+                { fields.push({title:"Case#: "+ casereturnInfo.oldCaseInfo.CaseNum+" has already been claimed by "+casereturnInfo.oldCaseOwner.Name, value:"", short:false});}
               else
-                {fields.push({title: "Case# : "+casereturnInfo.oldCaseInfo.CaseNum +" has now been claimed by "+casereturnInfo.requestSFUser.Name, value:"", short:false});};
-                fields.push({title: "Case Subject : "+subject, value: "", short:false}); 
-                fields.push({title: "Case Creator : "+createdBy, value: "", short:false});
+                {fields.push({title: "Case#: "+casereturnInfo.oldCaseInfo.CaseNum +" has now been claimed by "+casereturnInfo.requestSFUser.Name, value:"", short:false});};
+                fields.push({title: "Case Subject: "+subject, value: "", short:false}); 
+                fields.push({title: "Submitted By: "+createdBy, value: "", short:false});
               
-                fields.push({title: "Case Link : ", value: oauthObj.instance_url + "/" + caseId, short:false});
+                fields.push({title: "Go to Case: ", value: oauthObj.instance_url + "/" + caseId, short:false});
                 let message = {
                    // text: "A case's owner and subject have been updated:" + new Date(),
                   // text:statusMessage,
@@ -137,9 +137,9 @@ exports.execute = (req, res) => {
     .catch((error) => {
         if (error.code == 401) {
             let fields = [];
-            fields.push({title: "Case# : " +caseNumber, value:""});
-            fields.push({title: " Case Subject : "+subject, value: ""});
-            fields.push({title: "Case Creator : "+createdBy, value: "", short:false});
+            fields.push({title: "Case#: " +caseNumber+" has been created and assigned to Queue", value:""});
+            fields.push({title: " Case Subject: "+subject, value: ""});
+            fields.push({title: "Submitted By: "+createdBy, value: "", short:false});
             fields.push({title: "visit the URL to login and Authenticate", value: `https://${req.hostname}/login/`+slackUserId});
             let message = {
                  attachments: [
