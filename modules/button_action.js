@@ -234,6 +234,51 @@ exports.execute = (req, res) => {
 	}
 	//*********************************************************
 };
+
+if (actionName == "case user")
+{		
+
+    var arr = actionJSONPayload.actions[0].selected_options[0].value.toString().split("|");
+    console.log('----arr[0] is ' + arr[0]);
+    console.log('----arr[1] is ' + arr[1]);
+
+    var caseassignee = arr[0];
+    var caseId = arr[1];
+    var subject = arr[2];
+    var createdBy = arr[3];
+    var caseNumber = arr[4];
+    let fields = [];
+    
+     fields.push({title: "Case Subject: "+subject, value: "", short:false}); 
+     fields.push({title: "Submitted By: "+createdBy, value: "", short:false});
+     fields.push({title: "Go to Case: ", value: oauthObj.instance_url + "/" + caseId, short:false});
+     let message = {
+        attachments: [
+           {color: "#F2CF5B", fields: fields,
+           "text": "Click the button assign the case",
+           "callback_id":"button_test",
+           "attachment_type": "default",
+           "actions": [ 
+               
+              {
+               "name": "case button",
+               "text": "Assign Case",
+               "fallback": "damn!!!!! ",
+               "style":"Danger",
+               "type": "button",
+               "value": subject+'|'+caseId+'|'+createdBy
+              }
+           ] 
+        }
+       ]
+                    
+    };
+    console.log('----before'+ res.json(message) );
+    // console.log(res.json(message));
+     res.json(message);
+}
+
+
 /*
 function sendMessageToSlackResponseURL(responseURL, JSONmessage){
     var postOptions = {
