@@ -239,7 +239,7 @@ exports.execute = (req, res) => {
         
          fields.push({title: "Case Subject: "+subject, value: "", short:false}); 
          fields.push({title: "Submitted By: "+createdBy, value: "", short:false});
-         fields.push({title: "Go to Case: ", value: oauthObj.instance_url + "/" + caseId, short:false});
+         //fields.push({title: "Go to Case: ", value: oauthObj.instance_url + "/" + caseId, short:false});
          let message = {
             attachments: [
                 {
