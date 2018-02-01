@@ -42,8 +42,8 @@ exports.execute = (req, res) => {
 	console.log('----arr[0] is ' + arr[0]);
     console.log('----arr[1] is ' + arr[1]);  
     var caseassignee = arr[0];
-    var caseId = arr[1];
-    var subject = arr[2];
+    var subject = arr[1];
+    var caseId = arr[2];
     var createdBy = arr[3];
     var caseNumber = arr[4];
     force.query(oauthObj, soql)
