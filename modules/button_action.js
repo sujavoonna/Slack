@@ -247,7 +247,7 @@ exports.execute = (req, res) => {
             ]
                         
         };
-        console.log('----before'+ res.json(message) );
+        console.log('----before'+ message );
         // console.log(res.json(message));
          res.json(message);
     }
