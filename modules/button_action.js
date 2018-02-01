@@ -175,7 +175,7 @@ exports.execute = (req, res) => {
    	 
     }
 	
-	if (actionName == "case status")
+	/*if (actionName == "case status")
 	{		
     
 	var arr = actionJSONPayload.actions[0].selected_options[0].value.toString().split("|");
@@ -233,9 +233,9 @@ exports.execute = (req, res) => {
 	});
 	}
 	//*********************************************************
-};
+};*/
 
-if (actionName == "case user")
+if (actionName == "case status")
 {		
 
     var arr = actionJSONPayload.actions[0].selected_options[0].value.toString().split("|");
