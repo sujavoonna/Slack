@@ -199,8 +199,21 @@ exports.execute = (req, res) => {
             let message = {
                 text: "A case's status has been updated:",
                 attachments: [
-                    {color: "#F2CF5B", fields: fields
-					 
+                    {color: "#F2CF5B", fields: fields,
+                    "text": "Click the button again to  claim the case",
+                    "callback_id":"button_test",
+                    "attachment_type": "default",
+                    "actions": [ 
+                        
+                       {
+                        "name": "case button",
+                        "text": "Claim Case",
+                        "fallback": "damn!!!!! ",
+                        "style":"Danger",
+                        "type": "button",
+                        "value": subject+'|'+caseId+'|'+createdBy 
+                       }
+                    ] 
 			
 					}
                 ]
