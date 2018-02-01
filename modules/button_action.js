@@ -200,20 +200,7 @@ exports.execute = (req, res) => {
                 text: "A case's status has been updated:",
                 attachments: [
                     {color: "#F2CF5B", fields: fields,
-                    "text": "Click the button again to  claim the case",
-                    "callback_id":"button_test",
-                    "attachment_type": "default",
-                    "actions": [ 
-                        
-                       {
-                        "name": "case button",
-                        "text": "Claim Case",
-                        "fallback": "damn!!!!! ",
-                        "style":"Danger",
-                        "type": "button",
-                        "value": subject+'|'+caseId+'|'+createdBy 
-                       }
-                    ] 
+                   
 			
 					}
                 ]
@@ -249,27 +236,15 @@ exports.execute = (req, res) => {
         let fields = [];
         
          fields.push({title: "Case Subject: "+subject, value: "", short:false}); 
-         fields.push({title: "Submitted By: "+createdBy, value: "", short:false});
-         fields.push({title: "Go to Case: ", value: oauthObj.instance_url + "/" + caseId, short:false});
+         //fields.push({title: "Submitted By: "+createdBy, value: "", short:false});
+         //fields.push({title: "Go to Case: ", value: oauthObj.instance_url + "/" + caseId, short:false});
          let message = {
             attachments: [
-               {color: "#F2CF5B", fields: fields,
-               "text": "Click the button assign the case",
-               "callback_id":"button_test",
-               "attachment_type": "default",
-               "actions": [ 
-                   
-                  {
-                   "name": "case button",
-                   "text": "Assign Case",
-                   "fallback": "damn!!!!! ",
-                   "style":"Danger",
-                   "type": "button",
-                   "value": subject+'|'+caseId+'|'+createdBy
-                  }
-               ] 
-            }
-           ]
+                {color: "#F2CF5B", fields: fields
+               
+                
+             }
+            ]
                         
         };
         console.log('----before'+ res.json(message) );
