@@ -119,7 +119,7 @@ exports.execute = (req, res) => {
                                 
                                {
                                 "name": "case button",
-                                "text": "Claim Case",
+                                "text": "Assign Case",
                                 "fallback": "damn!!!!! ",
                                 "style":"Danger",
                                 "type": "button",
