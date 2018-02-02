@@ -56,6 +56,11 @@ exports.execute = (req, res) => {
             //force.update(oauthObj, "Case",
             
            /// force.apexrest(oauthObj,"/ClaimCase?sfuserid="+userId+"&"+"caseid="+caseId,
+           if(caseassignee == 'MySelf')
+           {
+            caseassignee = userId;
+           }
+
            force.apexrest(oauthObj,"/ClaimCase?sfuserid="+caseassignee+"&"+"caseid="+caseId,
             {
                    
