@@ -245,12 +245,12 @@ exports.execute = (req, res) => {
         var arr = actionJSONPayload.actions[0].selected_options[0].value.toString().split("|");
         console.log('----arr[0] is ' + arr[0]);
         console.log('----arr[1] is ' + arr[1]);
-        console.log('----arr[2] is ' + arr[1]);
+        console.log('----arr[2] is ' + arr[2]);
     
         var caseassignee = arr[0];
         var caseId = arr[1];
         var subject = "";
-        if(arr[2] !== null  )
+        if(arr[2] !== "null"  )
          subject = arr[2];
         else
           subject = "nosubject" ;
