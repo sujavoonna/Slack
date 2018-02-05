@@ -43,9 +43,7 @@ exports.execute = (req, res) => {
     console.log('----arr[1] is ' + arr[1]);  
     var caseassignee = arr[0];
     var subject = " ";
-    if(arr[1] != null)
-    subject = arr[1];
-    console.log('subject ' + subject);  
+    var subject = arr[1];
     var caseId = arr[2];
     var createdBy = arr[3];
     var caseNumber = arr[4];
@@ -83,7 +81,10 @@ exports.execute = (req, res) => {
                 { fields.push({title:"Case#: "+ casereturnInfo.oldCaseInfo.CaseNum+" has already been claimed by "+casereturnInfo.oldCaseOwner.Name, value:"", short:false});}
               else
                 {fields.push({title: "Case#: "+casereturnInfo.oldCaseInfo.CaseNum +" has now been claimed by "+casereturnInfo.requestSFUser.Name, value:"", short:false});};
-                fields.push({title: "Case Subject: "+subject, value: "", short:false}); 
+              if(subject != null)
+                fields.push({title: "Case Subject: "+subject, value: "", short:false});
+              else   
+                fields.push({title: "Case Subject: "+"", value: "", short:false});
                 fields.push({title: "Submitted By: "+createdBy, value: "", short:false});
               
                 fields.push({title: "Go to Case: ", value: oauthObj.instance_url + "/" + caseId, short:false});
@@ -109,7 +110,10 @@ exports.execute = (req, res) => {
                 if (Error.code == 401) {
                     let fields = [];
                     fields.push({title: "CaseID : " +caseId, value:""});
-                    fields.push({title: "Case Subject : "+subject, value: ""});
+                    if(subject !=null)
+                        fields.push({title: "Case Subject : "+subject, value: ""});
+                    else    
+                    fields.push({title: "Case Subject: "+"", value: "", short:false});
                     fields.push({title: "Case Creator : "+createdBy, value: "", short:false});
                     fields.push({title: "visit the URL to login and Authenticate", value: `https://${req.hostname}/login/`+slackUserId});
                     let message = {
@@ -148,7 +152,10 @@ exports.execute = (req, res) => {
         if (error.code == 401) {
             let fields = [];
             fields.push({title: "Case#: " +caseNumber+" has been created and assigned to Queue", value:""});
-            fields.push({title: " Case Subject: "+subject, value: ""});
+            if(subject != null)
+                fields.push({title: " Case Subject: "+subject, value: ""});
+            else
+                fields.push({title: "Case Subject: "+"", value: "", short:false});
             fields.push({title: "Submitted By: "+createdBy, value: "", short:false});
             fields.push({title: "visit the URL to login and Authenticate", value: `https://${req.hostname}/login/`+slackUserId});
             let message = {
