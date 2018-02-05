@@ -42,11 +42,7 @@ exports.execute = (req, res) => {
 	console.log('----arr[0] is ' + arr[0]);
     console.log('----arr[1] is ' + arr[1]);  
     var caseassignee = arr[0];
-    var subject = "";
-    if(arr[1] !== null)
-     subject = arr[1];
-    else
-      subject = "nosubject" ;
+    var subject = arr[1];
     var caseId = arr[2];
     var createdBy = arr[3];
     var caseNumber = arr[4];
@@ -252,7 +248,12 @@ exports.execute = (req, res) => {
     
         var caseassignee = arr[0];
         var caseId = arr[1];
-        var subject = arr[2];
+        var subject = "";
+        if(arr[2] !== null  )
+         subject = arr[2];
+        else
+          subject = "nosubject" ;
+       // var subject = arr[2];
         var createdBy = arr[3];
         var caseNumber = arr[4];
         let fields = [];
