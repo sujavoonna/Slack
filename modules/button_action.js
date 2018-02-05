@@ -78,7 +78,7 @@ exports.execute = (req, res) => {
                 {statusMessage = (caseId).bold()+" Case's owner  has now been claimed by :"+casereturnInfo.requestSFUser.Name}
                 else
                 {statusMessage =(caseId).bold()+ " has already been claimed by:"+casereturnInfo.oldCaseOwner.Name}; */
-                
+                console.log("--subject"+subject)
                 let fields = [];
                if(!casereturnInfo.Success) 
                 { fields.push({title:"Case#: "+ casereturnInfo.oldCaseInfo.CaseNum+" has already been claimed by "+casereturnInfo.oldCaseOwner.Name, value:"", short:false});}
@@ -112,6 +112,7 @@ exports.execute = (req, res) => {
             .catch((Error) => {
                 if (Error.code == 401) {
                     let fields = [];
+                    console.log("--subject"+subject);
                     fields.push({title: "CaseID : " +caseId, value:""});
                     if(subject !=null)
                         fields.push({title: "Case Subject : "+subject, value: ""});
@@ -153,6 +154,7 @@ exports.execute = (req, res) => {
     })
     .catch((error) => {
         if (error.code == 401) {
+            console.log("--subject"+subject);
             let fields = [];
             fields.push({title: "Case#: " +caseNumber+" has been created and assigned to Queue", value:""});
             if(subject != "nosubject")
