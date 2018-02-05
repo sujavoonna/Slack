@@ -43,7 +43,7 @@ exports.execute = (req, res) => {
     console.log('----arr[1] is ' + arr[1]);  
     var caseassignee = arr[0];
     var subject = "";
-    if(arr[1] != null || arr[1] != "nosubject" || arr[1] != "null")
+    if(arr[1] !== null || arr[1] !== "nosubject" || arr[1] !== "null")
      subject = arr[1];
     else
       subject = "nosubject" ;
@@ -84,7 +84,7 @@ exports.execute = (req, res) => {
                 { fields.push({title:"Case#: "+ casereturnInfo.oldCaseInfo.CaseNum+" has already been claimed by "+casereturnInfo.oldCaseOwner.Name, value:"", short:false});}
               else
                 {fields.push({title: "Case#: "+casereturnInfo.oldCaseInfo.CaseNum +" has now been claimed by "+casereturnInfo.requestSFUser.Name, value:"", short:false});};
-              if(subject != "nosubject")
+              if(subject !== "nosubject")
                 fields.push({title: "Case Subject: "+subject, value: "", short:false});
               else   
                 fields.push({title: "Case Subject: "+"", value: "", short:false});
@@ -114,7 +114,7 @@ exports.execute = (req, res) => {
                     let fields = [];
                     console.log("--subject"+subject);
                     fields.push({title: "CaseID : " +caseId, value:""});
-                    if(subject !=null)
+                    if(subject !==null)
                         fields.push({title: "Case Subject : "+subject, value: ""});
                     else    
                     fields.push({title: "Case Subject: "+"", value: "", short:false});
@@ -157,7 +157,7 @@ exports.execute = (req, res) => {
             console.log("--subject"+subject);
             let fields = [];
             fields.push({title: "Case#: " +caseNumber+" has been created and assigned to Queue", value:""});
-            if(subject != "nosubject")
+            if(subject !== "nosubject")
                 fields.push({title: " Case Subject: "+subject, value: ""});
             else
                 fields.push({title: "Case Subject: "+"", value: "", short:false});
