@@ -245,6 +245,7 @@ exports.execute = (req, res) => {
         var arr = actionJSONPayload.actions[0].selected_options[0].value.toString().split("|");
         console.log('----arr[0] is ' + arr[0]);
         console.log('----arr[1] is ' + arr[1]);
+        console.log('----arr[2] is ' + arr[1]);
     
         var caseassignee = arr[0];
         var caseId = arr[1];
@@ -256,6 +257,7 @@ exports.execute = (req, res) => {
        // var subject = arr[2];
         var createdBy = arr[3];
         var caseNumber = arr[4];
+        console.log("subject"+subject);
         let fields = [];
         
          fields.push({title: "Case Subject: "+subject, value: "", short:false}); 
