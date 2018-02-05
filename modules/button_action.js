@@ -42,8 +42,11 @@ exports.execute = (req, res) => {
 	console.log('----arr[0] is ' + arr[0]);
     console.log('----arr[1] is ' + arr[1]);  
     var caseassignee = arr[0];
-    var subject = " ";
-    var subject = arr[1];
+    var subject = "";
+    if(arr[1] != null || arr[1] != "nosubject" || arr[1] != "null")
+     subject = arr[1];
+    else
+      subject = "nosubject" ;
     var caseId = arr[2];
     var createdBy = arr[3];
     var caseNumber = arr[4];
@@ -81,7 +84,7 @@ exports.execute = (req, res) => {
                 { fields.push({title:"Case#: "+ casereturnInfo.oldCaseInfo.CaseNum+" has already been claimed by "+casereturnInfo.oldCaseOwner.Name, value:"", short:false});}
               else
                 {fields.push({title: "Case#: "+casereturnInfo.oldCaseInfo.CaseNum +" has now been claimed by "+casereturnInfo.requestSFUser.Name, value:"", short:false});};
-              if(subject != null)
+              if(subject != "nosubject")
                 fields.push({title: "Case Subject: "+subject, value: "", short:false});
               else   
                 fields.push({title: "Case Subject: "+"", value: "", short:false});
@@ -152,7 +155,7 @@ exports.execute = (req, res) => {
         if (error.code == 401) {
             let fields = [];
             fields.push({title: "Case#: " +caseNumber+" has been created and assigned to Queue", value:""});
-            if(subject != null)
+            if(subject != "nosubject")
                 fields.push({title: " Case Subject: "+subject, value: ""});
             else
                 fields.push({title: "Case Subject: "+"", value: "", short:false});
