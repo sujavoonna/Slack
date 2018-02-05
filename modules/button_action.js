@@ -114,7 +114,7 @@ exports.execute = (req, res) => {
                     let fields = [];
                     console.log("--subject"+subject);
                     fields.push({title: "CaseID : " +caseId, value:""});
-                    if(subject !==null)
+                    if(subject !== "nosubject")
                         fields.push({title: "Case Subject : "+subject, value: ""});
                     else    
                     fields.push({title: "Case Subject: "+"", value: "", short:false});
