@@ -43,7 +43,7 @@ exports.execute = (req, res) => {
     console.log('----arr[1] is ' + arr[1]);  
     var caseassignee = arr[0];
     var subject = "";
-    if(arr[1] !== null &&  arr[1] !== 'undefined' && arr[1] != "nosubject")
+    if(arr[1] !== null)
      subject = arr[1];
     else
       subject = "nosubject" ;
