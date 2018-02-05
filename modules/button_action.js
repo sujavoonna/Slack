@@ -45,6 +45,7 @@ exports.execute = (req, res) => {
     var subject = " ";
     if(arr[1] != null)
     subject = arr[1];
+    console.log('subject ' + subject);  
     var caseId = arr[2];
     var createdBy = arr[3];
     var caseNumber = arr[4];
