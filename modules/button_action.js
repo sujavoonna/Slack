@@ -18,7 +18,7 @@ exports.execute = (req, res) => {
 	console.log('----in button_action, before res.json(message) ');
 	
     console.log('---message is name' + actionJSONPayload.user.name+'id'+actionJSONPayload.user.id);
-
+    console.log('---message is name' + actionJSONPayload.actions);
    console.log('before');
     
           
