@@ -292,7 +292,32 @@ exports.execute = (req, res) => {
                         color: "#F2CF5B", fields: fields
                      
             
-                    }
+                    },
+                    {
+                        color: "#F2CF5B", fields: fields,
+                        "text": "Click the button to assign the case",
+                        "callback_id":"button_test",
+                        "attachment_type": "default",
+                       "actions":[
+                           {
+                            "name": "case user",
+                            "text": "Pick a user...",
+                            "type": "select",
+                            "options" :[
+                                {
+                                   "text": arrOption[0].text,
+                                   "value":arrOption[0].value
+                                },
+                                {
+                                    "text": arrOption[1].text,
+                                    "value":arrOption[1].value
+                                 }
+                            ] 
+                           }
+                          
+        
+                       ] 
+                     }
                     
                 ]
             }
