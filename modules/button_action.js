@@ -260,40 +260,57 @@ exports.execute = (req, res) => {
         var createdBy = arr[3];
         var caseNumber = arr[4];
         console.log("subject"+subject);
-        force.apexrest(oauthObj,"/ClaimCase?sfuserid="+caseassignee+"&"+"caseid="+caseId,
+        force.query(oauthObj, soql)
+    .then(data => { 
+        let users = JSON.parse(data).records;
+        if (users && users.length>0)
         {
-               
+           var userId = users[0].Id;
+            console.log('userID'+userId);
+            //force.update(oauthObj, "Case",
             
-        })
-        .then(data=> {
-            let casereturnInfo = JSON.parse(data),
-            statusMessage = "";         
-             console.log(casereturnInfo.requestSFUser.Type+casereturnInfo.requestSFUser.SlackName+"Message2"+casereturnInfo.Message);
-            /*if(casereturnInfo.Success)
-            {statusMessage = (caseId).bold()+" Case's owner  has now been claimed by :"+casereturnInfo.requestSFUser.Name}
-            else
-            {statusMessage =(caseId).bold()+ " has already been claimed by:"+casereturnInfo.oldCaseOwner.Name}; */
-            console.log("--subject"+subject)
-            let fields = [];
-           if(!casereturnInfo.Success) 
-            { fields.push({title:"Case#: "+ casereturnInfo.oldCaseInfo.CaseNum+" has already been claimed by "+casereturnInfo.oldCaseOwner.Name, value:"", short:false});}
-          else
-            {fields.push({title: "Case#: "+casereturnInfo.oldCaseInfo.CaseNum +" has now been claimed by "+casereturnInfo.requestSFUser.Name, value:"", short:false});};
-          if(subject !== "nosubject")
-            fields.push({title: "Case Subject: "+subject, value: "", short:false});
-          else   
-            fields.push({title: "Case Subject: "+"", value: "", short:false});
-            fields.push({title: "Submitted By: "+createdBy, value: "", short:false});
-          
-            fields.push({title: "Go to Case: ", value: oauthObj.instance_url + "/" + caseId, short:false});
-            let message = {
-                attachments: [
-                    {
-                        color: "#F2CF5B", fields: fields,
-                        "text": "Click the button to assign the case",
-                        "callback_id":"button_test",
-                        "attachment_type": "default",
-                       "actions":[
+           /// force.apexrest(oauthObj,"/ClaimCase?sfuserid="+userId+"&"+"caseid="+caseId,
+           if(caseassignee == 'MySelf')
+           {
+            caseassignee = userId;
+           }
+           console.log('caseassignee'+caseassignee);
+           force.apexrest(oauthObj,"/ClaimCase?sfuserid="+caseassignee+"&"+"caseid="+caseId,
+            {
+                   
+                
+            })
+            .then(data=> {
+                 let casereturnInfo = JSON.parse(data),
+                statusMessage = "";         
+                 console.log(casereturnInfo.requestSFUser.Type+casereturnInfo.requestSFUser.SlackName+"Message2"+casereturnInfo.Message);
+                /*if(casereturnInfo.Success)
+                {statusMessage = (caseId).bold()+" Case's owner  has now been claimed by :"+casereturnInfo.requestSFUser.Name}
+                else
+                {statusMessage =(caseId).bold()+ " has already been claimed by:"+casereturnInfo.oldCaseOwner.Name}; */
+                console.log("--subject"+subject)
+                let fields = [];
+               if(!casereturnInfo.Success) 
+                { fields.push({title:"Case#: "+ casereturnInfo.oldCaseInfo.CaseNum+" has already been claimed by "+casereturnInfo.oldCaseOwner.Name, value:"", short:false});}
+              else
+                {fields.push({title: "Case#: "+casereturnInfo.oldCaseInfo.CaseNum +" has now been claimed by "+casereturnInfo.requestSFUser.Name, value:"", short:false});};
+              if(subject !== "nosubject")
+                fields.push({title: "Case Subject: "+subject, value: "", short:false});
+              else   
+                fields.push({title: "Case Subject: "+"", value: "", short:false});
+                fields.push({title: "Submitted By: "+createdBy, value: "", short:false});
+              
+                fields.push({title: "Go to Case: ", value: oauthObj.instance_url + "/" + caseId, short:false});
+                let message = {
+                   // text: "A case's owner and subject have been updated:" + new Date(),
+                  // text:statusMessage,
+                    attachments: [
+                        {
+                            color: "#F2CF5B", fields: fields,
+                            "text": "Click the button to assign the case",
+                            "callback_id":"button_test",
+                            "attachment_type": "default",
+                            "actions":[
                            {
                             "name": "case user",
                             "text": "Pick a user...",
@@ -318,22 +335,105 @@ exports.execute = (req, res) => {
                           
         
                        ] 
-                     }
-                    
-                ]
-            }
-            console.log('----before'+ message );
-            // console.log(res.json(message));
-             res.json(message);
-        }) 
-        .catch((error) => {
-            if (error.code == 401) {
-                res.send(`Visit this URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
-
-            } else {
-                res.send("An error as occurred" +error.message);
-            }	
+                         
+                
+                        }
+                    ]
+                };
+                console.log('----slack user is ' + slackUserId);
+                 
+                
+                
+                res.json(message);
+                
+                 
+            })
+            .catch((Error) => {
+                if (Error.code == 401) {
+                    let fields = [];
+                    console.log("--subject"+subject);
+                    fields.push({title: "CaseID : " +caseId, value:""});
+                    if(subject !== "nosubject")
+                        fields.push({title: "Case Subject : "+subject, value: ""});
+                    else    
+                    fields.push({title: "Case Subject: "+"", value: "", short:false});
+                    fields.push({title: "Case Creator : "+createdBy, value: "", short:false});
+                    fields.push({title: "visit the URL to login and Authenticate", value: `https://${req.hostname}/login/`+slackUserId});
+                    let message = {
+                         attachments: [
+                            {color: "#F2CF5B", fields: fields,
+                            "text": "Click the button again to  claim the case",
+                            "callback_id":"button_test",
+                            "attachment_type": "default",
+                            "actions": [ 
+                                
+                               {
+                                "name": "case button",
+                                "text": "Assign Case",
+                                "fallback": "damn!!!!! ",
+                                "style":"Danger",
+                                "type": "button",
+                                "value": caseassignee+'|'+subject+'|'+caseId+'|'+createdBy+'|'+caseNumber
+                               }
+                            ] 
+                         }
+                        ]             
+                     } 
+                   // var url = req.body.payload;
+                   console.log('----before res.json(message) ');
+                  // console.log(res.json(message));
+                   res.json(message);
+    
+                } else {
+                    res.send("An error as occurred" +Error.Message);
+                }
         });
+        
+        }
+    })
+    .catch((error) => {
+        if (error.code == 401) {
+            console.log("--subject"+subject);
+            let fields = [];
+            fields.push({title: "Case#: " +caseNumber+" has been created and assigned to Queue", value:""});
+            if(subject !== "nosubject")
+                fields.push({title: " Case Subject: "+subject, value: ""});
+            else
+                fields.push({title: "Case Subject: "+"", value: "", short:false});
+            fields.push({title: "Submitted By: "+createdBy, value: "", short:false});
+            fields.push({title: "visit the URL to login and Authenticate", value: `https://${req.hostname}/login/`+slackUserId});
+            let message = {
+                 attachments: [
+                    {color: "#F2CF5B", fields: fields,
+                    "text": "Click the button again to  claim the case",
+                    "callback_id":"button_test",
+                    "attachment_type": "default",
+                    "actions": [ 
+                        
+                       {
+                        "name": "case button",
+                        "text": "Assign Case",
+                        "fallback": "damn!!!!! ",
+                        "style":"Danger",
+                        "type": "button",
+                        "value": caseassignee+'|'+subject+'|'+caseId+'|'+createdBy+'|'+caseNumber
+                       }
+                    ] 
+                 }
+                ]             
+             } 
+           // var url = req.body.payload;
+           console.log('----before res.json(message) ');
+          // console.log(res.json(message));
+           res.json(message);
+
+        } else {
+            res.send("An error as occurred" +error.message);
+           //return;
+        }
+    });    
+    
+   	
     }
        
 };
