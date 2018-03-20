@@ -322,7 +322,7 @@ exports.execute = (req, res) => {
                 ]
             }
             console.log('----before'+ message ); 
-            // console.log(res.json(message));
+            // console.log(res.json(message)); 
              res.json(message);
         })
         .catch((error) => {
