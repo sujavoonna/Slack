@@ -240,8 +240,7 @@ exports.execute = (req, res) => {
     //*********************************************************
     
     if (actionName == "case user")
-    {		
-    
+    {	
         var arr = actionJSONPayload.actions[0].selected_options[0].value.toString().split("|");
         
         var arrOption =  actionJSONPayload.original_message.attachments[0].actions[0].options; 
@@ -300,10 +299,17 @@ exports.execute = (req, res) => {
             console.log('----before'+ message );
             // console.log(res.json(message));
              res.json(message);
-        })
-        
-      
+        }) 
+        .catch((error) => {
+            if (error.code == 401) {
+                res.send(`Visit this URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
+
+            } else {
+                res.send("An error as occurred" +error.message);
+            }	
+        });
     }
+       
 };
 
 
