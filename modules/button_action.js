@@ -288,11 +288,6 @@ exports.execute = (req, res) => {
             fields.push({title: "Go to Case: ", value: oauthObj.instance_url + "/" + caseId, short:false});
             let message = {
                 attachments: [
-                    { 
-                        color: "#F2CF5B", fields: fields
-                     
-            
-                    },
                     {
                         color: "#F2CF5B", fields: fields,
                         "text": "Click the button to assign the case",
@@ -312,7 +307,13 @@ exports.execute = (req, res) => {
                                     "text": arrOption[1].text,
                                     "value":arrOption[1].value
                                  }
-                            ] 
+                            ] ,
+                            "selected_options":[
+                                {
+                               "text": casereturnInfo.requestSFUser.Name,
+                                "value" :casereturnInfo.requestSFUser.ID+'|'+caseId+'|'+subject+'|'+createdBy+'|'+caseNumber
+                                }
+                            ]
                            }
                           
         
