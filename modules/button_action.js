@@ -19,7 +19,7 @@ exports.execute = (req, res) => {
 	
     console.log('---message is name' + actionJSONPayload.user.name+'id'+actionJSONPayload.user.id);
   
-   console.log('before'+req.body.payload);
+   console.log('before'+actionJSONPayload.original_message.attachments); 
     
           
 	//**********************************************************
@@ -243,11 +243,12 @@ exports.execute = (req, res) => {
     {		
     
         var arr = actionJSONPayload.actions[0].selected_options[0].value.toString().split("|");
-        //var arrOption = actionJSONPayload.actions[0].options.value.toString().split("|");
+        
+        var arrOption =  actionJSONPayload.original_message.attachments[0].actions[0]; 
         console.log('----arr[0] is ' + arr[0]);
         console.log('----arr[1] is ' + arr[1]);
         console.log('----arr[2] is ' + arr[2]);
-       // console.log('----options is ' + arrOption[0]+arrOption[1]+arrOption[2]);
+        console.log('----options is ' +  actionJSONPayload.original_message.attachments[0].actions[0]);
 
         var caseassignee = arr[0];
         var caseId = arr[1];
@@ -288,6 +289,20 @@ exports.execute = (req, res) => {
                     ] 
      
                 
+             },
+             {
+               "actions":[
+                   {
+                    "name": "case button",
+                    "text": "Assign Case",
+                    "fallback": "damn!!!!! ",
+                    "style":"Danger",
+                    "type": "Select",
+                    "options" : arrOption.options
+                   }
+                  
+
+               ] 
              }
             ]
                         
