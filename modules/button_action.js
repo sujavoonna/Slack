@@ -244,11 +244,11 @@ exports.execute = (req, res) => {
     
         var arr = actionJSONPayload.actions[0].selected_options[0].value.toString().split("|");
         
-        var arrOption =  actionJSONPayload.original_message.attachments[0].actions[0]; 
+        var arrOption =  actionJSONPayload.original_message.attachments[0].actions[0].options; 
         console.log('----arr[0] is ' + arr[0]);
         console.log('----arr[1] is ' + arr[1]);
         console.log('----arr[2] is ' + arr[2]);
-        console.log('----options is ' +  actionJSONPayload.original_message.attachments[0].actions[0]);
+        console.log('----options is ' +  actionJSONPayload.original_message.attachments[0].actions[0].options[0].value);
 
         var caseassignee = arr[0];
         var caseId = arr[1];
@@ -293,12 +293,19 @@ exports.execute = (req, res) => {
              {
                "actions":[
                    {
-                    "name": "case button",
-                    "text": "Assign Case",
-                    "fallback": "damn!!!!! ",
-                    "style":"Danger",
-                    "type": "Select",
-                    "options" : arrOption.options
+                    "name": "case user",
+                    "text": "Pick a user...",
+                    "type": "select",
+                    "options" :[
+                        {
+                           "text": arrOption[0].text,
+                           "value":arrOption[0].value
+                        },
+                        {
+                            "text": arrOption[1].text,
+                            "value":arrOption[1].value
+                         }
+                    ] 
                    }
                   
 
