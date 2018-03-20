@@ -315,7 +315,8 @@ exports.execute = (req, res) => {
                             "name": "case user",
                             "text": "Pick a user...",
                             "type": "select",
-                            "options" :[
+                            "options" : arrOption
+                            /*[
                                 {
                                    "text": arrOption[0].text,
                                    "value":arrOption[0].value
@@ -324,7 +325,7 @@ exports.execute = (req, res) => {
                                     "text": arrOption[1].text,
                                     "value":arrOption[1].value
                                  }
-                            ] ,
+                            ]*/ ,
                             "selected_options":[
                                 {
                                "text": casereturnInfo.requestSFUser.Name,
