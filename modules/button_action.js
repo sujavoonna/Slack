@@ -261,66 +261,79 @@ exports.execute = (req, res) => {
         var createdBy = arr[3];
         var caseNumber = arr[4];
         console.log("subject"+subject);
-        let fields = [];
-        
-        if(subject !== "nosubject")
-            fields.push({title: " Case Subject: "+subject, value: ""});
-         else
+        force.apexrest(oauthObj,"/ClaimCase?sfuserid="+caseassignee+"&"+"caseid="+caseId,
+        {
+               
+            
+        })
+        .then(data=> {
+            let casereturnInfo = JSON.parse(data),
+            statusMessage = "";         
+             console.log(casereturnInfo.requestSFUser.Type+casereturnInfo.requestSFUser.SlackName+"Message2"+casereturnInfo.Message);
+            /*if(casereturnInfo.Success)
+            {statusMessage = (caseId).bold()+" Case's owner  has now been claimed by :"+casereturnInfo.requestSFUser.Name}
+            else
+            {statusMessage =(caseId).bold()+ " has already been claimed by:"+casereturnInfo.oldCaseOwner.Name}; */
+            console.log("--subject"+subject)
+            let fields = [];
+           if(!casereturnInfo.Success) 
+            { fields.push({title:"Case#: "+ casereturnInfo.oldCaseInfo.CaseNum+" has already been claimed by "+casereturnInfo.oldCaseOwner.Name, value:"", short:false});}
+          else
+            {fields.push({title: "Case#: "+casereturnInfo.oldCaseInfo.CaseNum +" has now been claimed by "+casereturnInfo.requestSFUser.Name, value:"", short:false});};
+          if(subject !== "nosubject")
+            fields.push({title: "Case Subject: "+subject, value: "", short:false});
+          else   
             fields.push({title: "Case Subject: "+"", value: "", short:false});
-         fields.push({title: "Submitted By: "+createdBy, value: "", short:false});
-         //fields.push({title: "Go to Case: ", value: oauthObj.instance_url + "/" + caseId, short:false});
-         let message = {
-            attachments: [
-                {
-                    color: "#F2CF5B", fields: fields,
-                    "text": "Click the button to assign the case",
-                    "callback_id":"button_test",
-                    "attachment_type": "default",
-                    "actions": [ 
-                        
-                       {
-                        "name": "case button",
-                        "text": "Assign Case",
-                        "fallback": "damn!!!!! ",
-                        "style":"Danger",
-                        "type": "button",
-                        "value": caseassignee+'|'+subject+'|'+caseId+'|'+createdBy+'|'+caseNumber
-                       }
-                    ] 
-     
-                
-             },
-             {
-                color: "#F2CF5B", fields: fields,
-                "text": "Click the button to assign the case",
-                "callback_id":"button_test",
-                "attachment_type": "default",
-               "actions":[
-                   {
-                    "name": "case user",
-                    "text": "Pick a user...",
-                    "type": "select",
-                    "options" :[
-                        {
-                           "text": arrOption[0].text,
-                           "value":arrOption[0].value
-                        },
-                        {
-                            "text": arrOption[1].text,
-                            "value":arrOption[1].value
-                         }
-                    ] 
-                   }
-                  
+            fields.push({title: "Submitted By: "+createdBy, value: "", short:false});
+          
+            fields.push({title: "Go to Case: ", value: oauthObj.instance_url + "/" + caseId, short:false});
+            let message = {
+                attachments: [
+                    { 
+                        color: "#F2CF5B", fields: fields
+                     
+            
+                    },
+                    {
+                        color: "#F2CF5B", fields: fields,
+                        "text": "Click the button to assign the case",
+                        "callback_id":"button_test",
+                        "attachment_type": "default",
+                       "actions":[
+                           {
+                            "name": "case user",
+                            "text": "Pick a user...",
+                            "type": "select",
+                            "options" :[
+                                {
+                                   "text": arrOption[0].text,
+                                   "value":arrOption[0].value
+                                },
+                                {
+                                    "text": arrOption[1].text,
+                                    "value":arrOption[1].value
+                                 }
+                            ] 
+                           }
+                          
+        
+                       ] 
+                     }
+                ]
+            }
+            console.log('----before'+ message );
+            // console.log(res.json(message));
+             res.json(message);
+        })
+        .catch((error) => {
+            if (error.code == 401) {
+                res.send(`Visit this URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
 
-               ] 
-             }
-            ]
-                        
-        };
-        console.log('----before'+ message );
-        // console.log(res.json(message));
-         res.json(message);
+            } else {
+                res.send("An error as occurred" +error.message);
+            }
+	    });
+      
     }
 };
 
