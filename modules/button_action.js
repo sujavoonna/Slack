@@ -242,7 +242,7 @@ exports.execute = (req, res) => {
     if (actionName == "case user")
     {	
         var arr = actionJSONPayload.actions[0].selected_options[0].value.toString().split("|");
-        var arrselectedText = actionJSONPayload.actions[0].selected_options[0].text;
+        var arrselected = actionJSONPayload.actions[0].selected_options;
         var arrOption =  actionJSONPayload.original_message.attachments[0].actions[0].options; 
         var arractions =  actionJSONPayload.original_message.attachments[0].actions; 
         console.log('----arr[0] is ' + arr[0]);
@@ -358,8 +358,8 @@ exports.execute = (req, res) => {
                                 "text": "Click the button to assign the case",
                                 "callback_id":"button_test",
                                 "attachment_type": "default",
-                                "actions":arractions
-                    
+                                "actions":arractions,
+                                "selected_options":arrselected
                             }
                         ]
                      } 
@@ -392,7 +392,8 @@ exports.execute = (req, res) => {
                     "text": "Click the button again to  claim the case",
                     "callback_id":"button_test",
                     "attachment_type": "default",
-                    "actions": arractions
+                    "actions": arractions,
+                    "selected_options":arrselected
                  }
                 ]             
              } 
