@@ -244,6 +244,7 @@ exports.execute = (req, res) => {
         var arr = actionJSONPayload.actions[0].selected_options[0].value.toString().split("|");
         var arrselectedText = actionJSONPayload.actions[0].selected_options[0].text;
         var arrOption =  actionJSONPayload.original_message.attachments[0].actions[0].options; 
+        var arractions =  actionJSONPayload.original_message.attachments[0].actions; 
         console.log('----arr[0] is ' + arr[0]);
         console.log('----arr[1] is ' + arr[1]);
         console.log('----arr[2] is ' + arr[2]);
@@ -318,7 +319,7 @@ exports.execute = (req, res) => {
                             "options" : arrOption,
                             "selected_options":[
                                 {
-                               "text": arrselectedText,
+                               "text": casereturnInfo.requestSFUser.Name,
                                 "value" :casereturnInfo.requestSFUser.ID+'|'+caseId+'|'+subject+'|'+createdBy+'|'+caseNumber
                                 }
                             ]
@@ -357,33 +358,7 @@ exports.execute = (req, res) => {
                                 "text": "Click the button to assign the case",
                                 "callback_id":"button_test",
                                 "attachment_type": "default",
-                                "actions":[
-                               {
-                                "name": "case user",
-                                "text": "Pick a user...",
-                                "type": "select",
-                                "options" : arrOption
-                                /*[
-                                    {
-                                       "text": arrOption[0].text,
-                                       "value":arrOption[0].value
-                                    },
-                                    {
-                                        "text": arrOption[1].text,
-                                        "value":arrOption[1].value
-                                     }
-                                ]*/ ,
-                                "selected_options":[
-                                    {
-                                   "text": casereturnInfo.requestSFUser.Name,
-                                   "value": caseassignee+'|'+subject+'|'+caseId+'|'+createdBy+'|'+caseNumber
-                                    }
-                                ]
-                               }
-                              
-            
-                           ] 
-                             
+                                "actions":arractions
                     
                             }
                         ]
@@ -417,17 +392,7 @@ exports.execute = (req, res) => {
                     "text": "Click the button again to  claim the case",
                     "callback_id":"button_test",
                     "attachment_type": "default",
-                    "actions": [ 
-                        
-                       {
-                        "name": "case button",
-                        "text": "Assign Case",
-                        "fallback": "damn!!!!! ",
-                        "style":"Danger",
-                        "type": "button",
-                        "value": caseassignee+'|'+subject+'|'+caseId+'|'+createdBy+'|'+caseNumber
-                       }
-                    ] 
+                    "actions": arractions
                  }
                 ]             
              } 
