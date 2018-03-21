@@ -262,7 +262,7 @@ exports.execute = (req, res) => {
         var caseNumber = arr[4];
         console.log("subject"+subject);
         force.query(oauthObj, soql)
-    .then(data => { 
+        .then(data => { 
         let users = JSON.parse(data).records;
         if (users && users.length>0)
         {
@@ -271,7 +271,7 @@ exports.execute = (req, res) => {
             //force.update(oauthObj, "Case",
             
            /// force.apexrest(oauthObj,"/ClaimCase?sfuserid="+userId+"&"+"caseid="+caseId,
-           if(caseassignee == 'MySelf')
+           if(caseassignee == 'Assign to me')
            {
             caseassignee = userId;
            }
