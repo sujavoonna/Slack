@@ -273,7 +273,7 @@ exports.execute = (req, res) => {
            /// force.apexrest(oauthObj,"/ClaimCase?sfuserid="+userId+"&"+"caseid="+caseId,
            if(caseassignee == 'Assign to me')
            {
-            caseassignee = userId;
+            caseassignee = userId;  
            }
            console.log('caseassignee'+caseassignee);
            force.apexrest(oauthObj,"/ClaimCase?sfuserid="+caseassignee+"&"+"caseid="+caseId,
