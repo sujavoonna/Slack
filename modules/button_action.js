@@ -242,7 +242,7 @@ exports.execute = (req, res) => {
     if (actionName == "case user")
     {	
         var arr = actionJSONPayload.actions[0].selected_options[0].value.toString().split("|");
-        
+        var arrselectedText = actionJSONPayload.actions[0].selected_options[0].text;
         var arrOption =  actionJSONPayload.original_message.attachments[0].actions[0].options; 
         console.log('----arr[0] is ' + arr[0]);
         console.log('----arr[1] is ' + arr[1]);
@@ -315,20 +315,10 @@ exports.execute = (req, res) => {
                             "name": "case user",
                             "text": "Pick a user...",
                             "type": "select",
-                            "options" : arrOption
-                            /*[
-                                {
-                                   "text": arrOption[0].text,
-                                   "value":arrOption[0].value
-                                },
-                                {
-                                    "text": arrOption[1].text,
-                                    "value":arrOption[1].value
-                                 }
-                            ]*/ ,
+                            "options" : arrOption,
                             "selected_options":[
                                 {
-                               "text": casereturnInfo.requestSFUser.Name,
+                               "text": arrselectedText,
                                 "value" :casereturnInfo.requestSFUser.ID+'|'+caseId+'|'+subject+'|'+createdBy+'|'+caseNumber
                                 }
                             ]
@@ -361,24 +351,42 @@ exports.execute = (req, res) => {
                     fields.push({title: "Case Creator : "+createdBy, value: "", short:false});
                     fields.push({title: "visit the URL to login and Authenticate", value: `https://${req.hostname}/login/`+slackUserId});
                     let message = {
-                         attachments: [
-                            {color: "#F2CF5B", fields: fields,
-                            "text": "Click the button again to  claim the case",
-                            "callback_id":"button_test",
-                            "attachment_type": "default",
-                            "actions": [ 
-                                
+                        attachments: [
+                            {
+                                color: "#F2CF5B", fields: fields,
+                                "text": "Click the button to assign the case",
+                                "callback_id":"button_test",
+                                "attachment_type": "default",
+                                "actions":[
                                {
-                                "name": "case button",
-                                "text": "Assign Case",
-                                "fallback": "damn!!!!! ",
-                                "style":"Danger",
-                                "type": "button",
-                                "value": caseassignee+'|'+subject+'|'+caseId+'|'+createdBy+'|'+caseNumber
+                                "name": "case user",
+                                "text": "Pick a user...",
+                                "type": "select",
+                                "options" : arrOption
+                                /*[
+                                    {
+                                       "text": arrOption[0].text,
+                                       "value":arrOption[0].value
+                                    },
+                                    {
+                                        "text": arrOption[1].text,
+                                        "value":arrOption[1].value
+                                     }
+                                ]*/ ,
+                                "selected_options":[
+                                    {
+                                   "text": casereturnInfo.requestSFUser.Name,
+                                   "value": caseassignee+'|'+subject+'|'+caseId+'|'+createdBy+'|'+caseNumber
+                                    }
+                                ]
                                }
-                            ] 
-                         }
-                        ]             
+                              
+            
+                           ] 
+                             
+                    
+                            }
+                        ]
                      } 
                    // var url = req.body.payload;
                    console.log('----before res.json(message) ');
