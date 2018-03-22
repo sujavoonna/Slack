@@ -35,7 +35,7 @@ app.post('/contact', contact.execute);
 app.post('/searchcase', searchCase.execute);
 app.post('/sujaslackbutton', sujaslackbutton.execute);
 app.post('/slackmenu', slackmenu.execute);
-app.post('/slack/actions', buttonAction.execute);
+app.post('/slack/actions/pins_remove', buttonAction.execute);
 app.post('/account', account.execute);
 app.post('/case', _case.execute);
 app.post('/whoami', whoami.execute);
