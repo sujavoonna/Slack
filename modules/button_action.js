@@ -19,7 +19,7 @@ exports.execute = (req, res) => {
 	
     console.log('---message is name' + actionJSONPayload.user.name+'id'+actionJSONPayload.user.id);
   
-   console.log('before'+actionJSONPayload.original_message.attachments); 
+   console.log('before'+actionJSONPayload); 
     
           
 	//**********************************************************
