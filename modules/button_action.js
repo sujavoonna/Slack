@@ -97,7 +97,7 @@ exports.execute = (req, res) => {
                         }
                     ]
                 };
-                console.log('----slack user is ' + slackUserId);
+                console.log('----slack user is ' + slackUserId+res.json(message));
                  
                 
                 
