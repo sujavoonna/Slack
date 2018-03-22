@@ -75,7 +75,7 @@ exports.execute = (req, res) => {
                 else
                 {statusMessage =(caseId).bold()+ " has already been claimed by:"+casereturnInfo.oldCaseOwner.Name}; */
                 console.log("--subject"+subject)
-                let fields = [];
+                let fields = []; 
                if(!casereturnInfo.Success) 
                 { fields.push({title:"Case#: "+ casereturnInfo.oldCaseInfo.CaseNum+" has already been claimed by "+casereturnInfo.oldCaseOwner.Name, value:"", short:false});}
               else
