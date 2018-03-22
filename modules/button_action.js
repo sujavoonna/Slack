@@ -19,7 +19,7 @@ exports.execute = (req, res) => {
 	
     console.log('---message is name' + actionJSONPayload.user.name+'id'+actionJSONPayload.user.id);
   
-   console.log('before'+actionJSONPayload.ts); 
+   console.log('before'+actionJSONPayload); 
     
           
 	//**********************************************************
@@ -249,7 +249,7 @@ exports.execute = (req, res) => {
         console.log('----arr[1] is ' + arr[1]);
         console.log('----arr[2] is ' + arr[2]);
         console.log('----options is ' +  actionJSONPayload.original_message.attachments[0].actions[0].options[0].value);
-
+        console.log('----ts is ' + actionJSONPayload.original_message.ts);
         var caseassignee = arr[0];
         var caseId = arr[1];
         var subject = "";
