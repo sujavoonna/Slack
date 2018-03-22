@@ -250,6 +250,7 @@ exports.execute = (req, res) => {
         console.log('----arr[2] is ' + arr[2]);
         console.log('----options is ' +  actionJSONPayload.original_message.attachments[0].actions[0].options[0].value);
         console.log('----ts is ' + actionJSONPayload.original_message.ts);
+        console.log('----channel is ' + actionJSONPayload.channel.id);
         var caseassignee = arr[0];
         var caseId = arr[1];
         var subject = "";
