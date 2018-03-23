@@ -251,6 +251,7 @@ exports.execute = (req, res) => {
         console.log('----options is ' +  actionJSONPayload.original_message.attachments[0].actions[0].options[0].value);
         console.log('----ts is ' + actionJSONPayload.original_message.ts);
         console.log('----channel is ' + actionJSONPayload.channel.id);
+        console.log('----originalmessage is ' + actionJSONPayload.original_message);
         var caseassignee = arr[0];
         var caseId = arr[1];
         var subject = "";
@@ -380,7 +381,7 @@ exports.execute = (req, res) => {
         if (error.code == 401) {
             console.log("--subject"+subject);
             let fields = [];
-            fields.push({title: "Case#: " +caseNumber+" has been created and assigned to Queue", value:""});
+            fields.push({title: "Case#: " +caseNumber+" has been created and assigned to Queue or "+arrselected[0].text, value:""});
             if(subject !== "nosubject")
                 fields.push({title: " Case Subject: "+subject, value: ""});
             else
