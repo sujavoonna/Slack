@@ -46,6 +46,7 @@ exports.execute = (req, res) => {
     var caseId = arr[2];
     var createdBy = arr[3];
     var caseNumber = arr[4];
+    
     force.query(oauthObj, soql)
     .then(data => { 
         let users = JSON.parse(data).records;
@@ -251,7 +252,6 @@ exports.execute = (req, res) => {
         console.log('----options is ' +  actionJSONPayload.original_message.attachments[0].actions[0].options[0].value);
         console.log('----ts is ' + actionJSONPayload.original_message.ts);
         console.log('----channel is ' + actionJSONPayload.channel.id);
-        console.log('----originalmessage is ' + actionJSONPayload.original_message);
         var caseassignee = arr[0];
         var caseId = arr[1];
         var subject = "";
@@ -262,6 +262,9 @@ exports.execute = (req, res) => {
        // var subject = arr[2];
         var createdBy = arr[3];
         var caseNumber = arr[4];
+        var channel = actionJSONPayload.channel.id;
+        var ts = actionJSONPayload.original_message.ts;
+
         console.log("subject"+subject);
         force.query(oauthObj, soql)
         .then(data => { 
@@ -278,7 +281,7 @@ exports.execute = (req, res) => {
             caseassignee = userId;
            }
            console.log('caseassignee'+caseassignee);
-           force.apexrest(oauthObj,"/ClaimCase?sfuserid="+caseassignee+"&"+"caseid="+caseId,
+           force.apexrest(oauthObj,"/ClaimCase?sfuserid="+caseassignee+"&"+"caseid="+caseId+"&"+"channelId="+channel+"&"+"ts="+ts,
             {
                    
                 
@@ -381,7 +384,7 @@ exports.execute = (req, res) => {
         if (error.code == 401) {
             console.log("--subject"+subject);
             let fields = [];
-            fields.push({title: "Case#: " +caseNumber+" has been created and assigned to Queue or "+arrselected[0].text, value:""});
+            fields.push({title: "Case#: " +caseNumber+" has been created and assigned to Queue or assigned queue member"});
             if(subject !== "nosubject")
                 fields.push({title: " Case Subject: "+subject, value: ""});
             else
