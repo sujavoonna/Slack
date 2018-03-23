@@ -281,7 +281,7 @@ exports.execute = (req, res) => {
             caseassignee = userId;
            }
            console.log('caseassignee'+caseassignee);
-           force.apexrest(oauthObj,"/ClaimCase?sfuserid="+caseassignee+"&"+"caseid="+caseId+"&"+"channelId="+channel+"&"+"ts="+ts,
+           force.apexrest(oauthObj,"/ClaimCase?sfuserid="+caseassignee+"&"+"caseid="+caseId+"&"+"channelId="+channel+"&"+"ts="+ts,  
             {
                    
                 
