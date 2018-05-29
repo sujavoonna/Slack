@@ -150,7 +150,7 @@ exports.execute = (req, res) => {
         }
     })
     .catch((error) => {
-        if (error.code == 401) {
+        if (error.code == 401 ) {
             console.log("--subject"+subject);
             let fields = [];
             fields.push({title: "Case#: " +caseNumber+" has been created and assigned to Queue", value:""});
@@ -250,8 +250,8 @@ exports.execute = (req, res) => {
         console.log('----arr[1] is ' + arr[1]);
         console.log('----arr[2] is ' + arr[2]);
         console.log('----options is ' +  actionJSONPayload.original_message.attachments[0].actions[0].options[0].value);
-        console.log('----ts is ' + actionJSONPayload.original_message.ts);
-        console.log('----channel is ' + actionJSONPayload.channel.id);
+       // console.log('----ts is ' + actionJSONPayload.original_message.ts);
+        //console.log('----channel is ' + actionJSONPayload.channel.id);
         var caseassignee = arr[0];
         var caseId = arr[1];
         var subject = "";
@@ -262,8 +262,8 @@ exports.execute = (req, res) => {
        // var subject = arr[2];
         var createdBy = arr[3];
         var caseNumber = arr[4];
-        var channel = actionJSONPayload.channel.id;
-        var ts = actionJSONPayload.original_message.ts;
+       // var channel = actionJSONPayload.channel.id;
+        //var ts = actionJSONPayload.original_message.ts;
 
         console.log("subject"+subject);
         force.query(oauthObj, soql)
@@ -281,7 +281,8 @@ exports.execute = (req, res) => {
             caseassignee = userId;
            }
            console.log('caseassignee'+caseassignee);
-           force.apexrest(oauthObj,"/ClaimCase?sfuserid="+caseassignee+"&"+"caseid="+caseId+"&"+"channelId="+channel+"&"+"ts="+ts,  
+           force.apexrest(oauthObj,"/ClaimCase?sfuserid="+caseassignee+"&"+"caseid="+caseId,
+           //+"&"+"channelId="+channel+"&"+"ts="+ts,  
             {
                    
                 
